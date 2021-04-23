@@ -1,0 +1,13 @@
+D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\bin\Debug\RecipeDAL.dll.config
+D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\bin\Debug\RecipeDAL.dll
+D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\bin\Debug\RecipeDAL.pdb
+D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\bin\Debug\EntityFramework.dll
+D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\bin\Debug\EntityFramework.xml
+D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.Migrations.Addedtable.resources
+D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.csproj.GenerateResource.cache
+D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.csproj.CoreCompileInputs.cache
+D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.csproj.CopyComplete
+D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.dll
+D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.pdb
