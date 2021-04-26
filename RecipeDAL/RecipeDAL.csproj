@@ -53,23 +53,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\RecipeContext.cs" />
+    <Compile Include="DAL\BaseDAO.cs" />
+    <Compile Include="DAL\Category.cs" />
     <Compile Include="DAL\IEntity.cs" />
-    <Compile Include="DAL\Recipes.cs" />
-    <Compile Include="Migrations\202104231316421_Added table.cs" />
-    <Compile Include="Migrations\202104231316421_Added table.designer.cs">
-      <DependentUpon>202104231316421_Added table.cs</DependentUpon>
+    <Compile Include="DAL\Recipe.cs" />
+    <Compile Include="DAL\User.cs" />
+    <Compile Include="Migrations\202104260757220_added tables.cs" />
+    <Compile Include="Migrations\202104260757220_added tables.designer.cs">
+      <DependentUpon>202104260757220_added tables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104231316421_Added table.resx">
-      <DependentUpon>202104231316421_Added table.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202104260757220_added tables.resx">
+      <DependentUpon>202104260757220_added tables.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

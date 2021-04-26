@@ -11,3 +11,16 @@ D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.csproj.CoreCompi
 D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.csproj.CopyComplete
 D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.dll
 D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.pdb
+D:\C#course\RecipeAppMVC\RecipeDAL\bin\Debug\RecipeDAL.dll.config
+D:\C#course\RecipeAppMVC\RecipeDAL\bin\Debug\RecipeDAL.dll
+D:\C#course\RecipeAppMVC\RecipeDAL\bin\Debug\RecipeDAL.pdb
+D:\C#course\RecipeAppMVC\RecipeDAL\bin\Debug\EntityFramework.dll
+D:\C#course\RecipeAppMVC\RecipeDAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\C#course\RecipeAppMVC\RecipeDAL\bin\Debug\EntityFramework.xml
+D:\C#course\RecipeAppMVC\RecipeDAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\C#course\RecipeAppMVC\RecipeDAL\obj\Debug\RecipeDAL.csproj.CoreCompileInputs.cache
+D:\C#course\RecipeAppMVC\RecipeDAL\obj\Debug\RecipeDAL.csproj.CopyComplete
+D:\C#course\RecipeAppMVC\RecipeDAL\obj\Debug\RecipeDAL.dll
+D:\C#course\RecipeAppMVC\RecipeDAL\obj\Debug\RecipeDAL.pdb
+D:\C#course\RecipeAppMVC\RecipeDAL\obj\Debug\RecipeDAL.Migrations.addedtables.resources
+D:\C#course\RecipeAppMVC\RecipeDAL\obj\Debug\RecipeDAL.csproj.GenerateResource.cache

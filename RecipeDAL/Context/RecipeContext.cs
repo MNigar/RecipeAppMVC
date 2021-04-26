@@ -11,6 +11,10 @@ namespace RecipeDAL.Context
    public class RecipeContext:DbContext
     {
         public RecipeContext() : base("RecipeApp") { }
-        public DbSet<Recipes> Recipes { get; set; }
+        public virtual DbSet<Recipe> Recipes { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+
+        public virtual DbSet<User> Users { get; set; }
+
     }
 }

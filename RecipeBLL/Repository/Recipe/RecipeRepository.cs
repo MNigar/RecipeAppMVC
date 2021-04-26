@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RecipeBLL.Repository.Recipe
 {
-    public class RecipeRepository : RepositoryClass<Recipes>, IRecipeRepository
+    public class RecipeRepository : RepositoryClass<RecipeDAL.DAL.Recipe>, IRecipeRepository
     {
         public RecipeRepository(RecipeContext dbContext) : base(dbContext)
         {

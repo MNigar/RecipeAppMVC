@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RecipeBLL.Repository
 {
-   public class RepositoryClass<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
+   public class RepositoryClass<TEntity> : IRepository<TEntity> where TEntity :  BaseDAO
     {
         private readonly RecipeContext _dbContext;
 
@@ -32,7 +32,7 @@ namespace RecipeBLL.Repository
 
         public IQueryable<TEntity> GetAll()
         {
-            return _dbContext.Set<TEntity>().AsNoTracking();
+            return _dbContext.Set<TEntity>();
         }
 
         public TEntity GetById(int id)
@@ -49,9 +49,9 @@ namespace RecipeBLL.Repository
         }
         public void Update(int id, TEntity entity)
         {
-            var data = _dbContext.Entry(entity);
-            data.State = System.Data.Entity.EntityState.Modified;
-
+            //var data = _dbContext.Entry(entity);
+            //data.State = System.Data.Entity.EntityState.Modified;
+            //_dbContext.SaveChanges();
         }
         protected void Dispose(bool disposing)
         {

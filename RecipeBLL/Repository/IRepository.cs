@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RecipeBLL.Repository
 {
- public   interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity> where TEntity : class
     {
         IQueryable<TEntity> GetAll();
 

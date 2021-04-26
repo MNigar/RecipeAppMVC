@@ -7,13 +7,13 @@ namespace RecipeDAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Addedtable : IMigrationMetadata
+    public sealed partial class addednnewtable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Addedtable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addednnewtable));
         
         string IMigrationMetadata.Id
         {
-            get { return "202104231316421_Added table"; }
+            get { return "202104260753521_addedn new table"; }
         }
         
         string IMigrationMetadata.Source

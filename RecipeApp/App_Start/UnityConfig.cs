@@ -24,7 +24,7 @@ namespace RecipeApp
             var config = new MapperConfiguration(cfg =>
             {
                 //Create all maps here
-                cfg.CreateMap<Recipes, RecipeDTO>();
+                cfg.CreateMap<Recipe, RecipeDTO>();
 
                
 
