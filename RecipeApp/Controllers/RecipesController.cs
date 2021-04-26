@@ -36,5 +36,28 @@ namespace RecipeApp.Controllers
 
             return View(persondtos);
         }
+       
+        [HttpGet]
+     public ActionResult Home()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult SubmitRecipe()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult RecipeDetails()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult RecipeGrid()
+        {
+            return View();
+        }
+
     }
 }

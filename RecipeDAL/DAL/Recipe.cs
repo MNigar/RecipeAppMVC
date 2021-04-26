@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RecipeDAL.DAL
 
@@ -23,6 +24,7 @@ namespace RecipeDAL.DAL
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
         public int UserId { get; set; }
+        [ForeignKey("UserId")]
         public virtual User User { get; set; }
 
     }

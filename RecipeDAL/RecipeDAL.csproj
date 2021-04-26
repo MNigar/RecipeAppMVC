@@ -58,9 +58,9 @@
     <Compile Include="DAL\IEntity.cs" />
     <Compile Include="DAL\Recipe.cs" />
     <Compile Include="DAL\User.cs" />
-    <Compile Include="Migrations\202104260757220_added tables.cs" />
-    <Compile Include="Migrations\202104260757220_added tables.designer.cs">
-      <DependentUpon>202104260757220_added tables.cs</DependentUpon>
+    <Compile Include="Migrations\202104260636568_added table.cs" />
+    <Compile Include="Migrations\202104260636568_added table.designer.cs">
+      <DependentUpon>202104260636568_added table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,8 +70,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104260757220_added tables.resx">
-      <DependentUpon>202104260757220_added tables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104260636568_added table.resx">
+      <DependentUpon>202104260636568_added table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

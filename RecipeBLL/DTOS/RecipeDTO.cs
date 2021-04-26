@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RecipeBLL.DTOS
 {
-    public class RecipeDTO
+    public class RecipeDTO:BaseDTO
     {
         public int Id { get; set; }
         public string Text { get; set; }

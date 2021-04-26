@@ -13,9 +13,9 @@ namespace RecipeBLL.Repository
         TEntity GetById(int id);
 
 
-        void Create(TEntity entity);
+        void Create(TEntity entity,int userId);
 
-        void Update(int id, TEntity entity);
+        void Update( TEntity entity, int userId);
 
         void Delete(int id);
 

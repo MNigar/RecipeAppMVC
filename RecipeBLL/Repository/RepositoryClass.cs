@@ -17,10 +17,25 @@ namespace RecipeBLL.Repository
             _dbContext = dbContext;
         }
         //RecipeContext _dbContext = new RecipeContext();
-        public void Create(TEntity entity)
+        public void Create(TEntity entity,int userId=0)
         {
-            _dbContext.Set<TEntity>().Add(entity);
-            _dbContext.SaveChangesAsync();
+            try
+            {
+                entity.CreatedUserId = userId;
+                entity.CreatedDate = DateTime.Now;
+                entity.ModifiedDate = null;
+                using (var transaction = _dbContext.Database.BeginTransaction())
+                {
+                    _dbContext.Set<TEntity>().Add(entity);
+                    _dbContext.SaveChanges();
+                    transaction.Commit();
+                }
+                   
+            }
+            catch (Exception ex)
+            {
+                
+            }
         }
 
         public void Delete(int id)
@@ -47,11 +62,35 @@ namespace RecipeBLL.Repository
                 .AsNoTracking()
                 .Where(predicate).ToList();
         }
-        public void Update(int id, TEntity entity)
+        public void Update(/*int id,*/ TEntity entity,int userId=0  )
         {
             //var data = _dbContext.Entry(entity);
             //data.State = System.Data.Entity.EntityState.Modified;
             //_dbContext.SaveChanges();
+            try
+            {
+              
+               
+                using (var transaction = _dbContext.Database.BeginTransaction())
+                {
+                    var dbModel = _dbContext.Set<TEntity>().FirstOrDefault(x => x.Id == entity.Id);
+                    dbModel.ModifiedUserId = userId;
+                    dbModel.ModifiedDate = DateTime.Now;
+                    var entry = _dbContext.Entry(dbModel);
+                    entry.CurrentValues.SetValues(entity);
+                    entry.Property(x => x.CreatedDate).IsModified = false;
+                    entry.Property(x => x.CreatedUserId).IsModified = false;
+                    _dbContext.SaveChanges();
+                    transaction.Commit();
+                  
+             
+                }
+
+            }
+            catch (Exception ex)
+            {
+                
+            }
         }
         protected void Dispose(bool disposing)
         {

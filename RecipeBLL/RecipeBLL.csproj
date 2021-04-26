@@ -52,8 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOS\BaseDTO.cs" />
+    <Compile Include="DTOS\CategoryDTO.cs" />
     <Compile Include="DTOS\RecipeDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Category\CategoryRepository.cs" />
+    <Compile Include="Repository\Category\ICategoryRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\Recipe\IRecipeRepository.cs" />
     <Compile Include="Repository\Recipe\RecipeRepository.cs" />
