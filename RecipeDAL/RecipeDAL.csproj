@@ -56,11 +56,20 @@
     <Compile Include="DAL\BaseDAO.cs" />
     <Compile Include="DAL\Category.cs" />
     <Compile Include="DAL\IEntity.cs" />
+    <Compile Include="DAL\Ingridient.cs" />
     <Compile Include="DAL\Recipe.cs" />
     <Compile Include="DAL\User.cs" />
     <Compile Include="Migrations\202104260636568_added table.cs" />
     <Compile Include="Migrations\202104260636568_added table.designer.cs">
       <DependentUpon>202104260636568_added table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104271342593_Added new tables.cs" />
+    <Compile Include="Migrations\202104271342593_Added new tables.designer.cs">
+      <DependentUpon>202104271342593_Added new tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104271409089_Added new tablesh.cs" />
+    <Compile Include="Migrations\202104271409089_Added new tablesh.designer.cs">
+      <DependentUpon>202104271409089_Added new tablesh.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +81,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202104260636568_added table.resx">
       <DependentUpon>202104260636568_added table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104271342593_Added new tables.resx">
+      <DependentUpon>202104271342593_Added new tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104271409089_Added new tablesh.resx">
+      <DependentUpon>202104271409089_Added new tablesh.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

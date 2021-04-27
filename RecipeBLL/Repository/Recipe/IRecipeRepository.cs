@@ -7,7 +7,7 @@ using RecipeBLL.DTOS;
 using RecipeDAL.DAL;
 namespace RecipeBLL.Repository.Recipe
 {
-   public interface IRecipeRepository:IRepository<RecipeDAL.DAL.Recipe>
+   public interface IRecipeRepository:IRepository<RecipeDTO>
     {
     }
 }

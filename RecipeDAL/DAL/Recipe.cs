@@ -12,17 +12,29 @@ namespace RecipeDAL.DAL
 {
     public class Recipe: BaseDAO
     {
+        public Recipe()
+        {
+            Ingridients = new HashSet<Ingridient>();
+        }
+        [Required]
         [MaxLength(200)]
-        public string Ingridients { get; set; }
+        public string Name { get; set; }
+  
+        public virtual HashSet<Ingridient> Ingridients { get; set; }
 
+        [Required]
+        [MaxLength(500)]
 
-        public string Quantity { get; set; }
-        [MaxLength(200)]
         public string Description { get; set; }
 
+       
         public int Status { get; set; }
+        [Required]
+       
         public int CategoryId { get; set; }
+     
         public virtual Category Category { get; set; }
+        
         public int UserId { get; set; }
         [ForeignKey("UserId")]
         public virtual User User { get; set; }

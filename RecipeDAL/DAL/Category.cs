@@ -16,7 +16,7 @@ namespace RecipeDAL.DAL
         public string Name { get; set; }
         public virtual HashSet<Recipe> Recipes { get; set; }
         public int UserId { get; set; }
-        public virtual User UserDAO { get; set; }
+        public virtual User User { get; set; }
 
     }
 }

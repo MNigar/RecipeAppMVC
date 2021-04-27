@@ -132,6 +132,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="Areas\Manage\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Manage\Controllers\HomeController.cs" />
     <Compile Include="Areas\Manage\ManageAreaRegistration.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -141,7 +143,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\IngridientViewModel.cs" />
     <Compile Include="Models\RecipeViewModel.cs" />
+    <Compile Include="Models\ViewModels\RecipeIngridientViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2068,6 +2072,13 @@
     <Content Include="Public\metropolitanhost.com\themes\themeforest\html\trickly\assets\fonts\font-awesome\webfonts\fa-solid-900.woff2" />
     <Content Include="Public\metropolitanhost.com\themes\themeforest\html\trickly\assets\fonts\font-awesome\webfonts\fa-solid-900d41d.eot" />
     <Content Include="Public\metropolitanhost.com\themes\themeforest\html\trickly\assets\fonts\TrashHand.ttf" />
+    <Content Include="Areas\Manage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Manage\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Manage\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Manage\Views\Category\Create.cshtml" />
+    <Content Include="Areas\Manage\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Manage\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Manage\Views\Category\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Public\backblue.gif" />
     <Content Include="Public\cookies.txt" />
@@ -2242,14 +2253,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Recipes\Index.cshtml" />
     <Content Include="Views\Recipes\REcipe.cshtml" />
     <Content Include="Views\Recipes\Home.cshtml" />
     <Content Include="Views\Shared\_Layout1.cshtml" />
-    <Content Include="Views\Recipes\SubmitRecipe.cshtml" />
+    <Content Include="Views\Recipes\Create.cshtml" />
     <Content Include="Views\Recipes\RecipeDetails.cshtml" />
     <Content Include="Views\Recipes\RecipeGrid.cshtml" />
     <Content Include="Views\Category\RecipeCategory.cshtml" />
@@ -2258,12 +2266,13 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\Add.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Home\RecipeGrid.cshtml" />
+    <Content Include="Views\Home\RecipeDetails.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Manage\Controllers\" />
     <Folder Include="Areas\Manage\Data\" />
-    <Folder Include="Areas\Manage\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RecipeBLL\RecipeBLL.csproj">

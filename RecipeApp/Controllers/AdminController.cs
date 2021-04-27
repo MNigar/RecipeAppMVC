@@ -32,41 +32,6 @@ namespace RecipeApp.Controllers
         {
             return View();
         }
-        public ActionResult Add()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Add(CategoryViewModel model)
-        {
-           
-            model.UserId = 2;
-            var persondtos = _mapper.Map<RecipeBLL.DTOS.CategoryDTO>(model);
-            var categoryModel = _mapper.Map<Category>(persondtos);
-            _repository.Create(categoryModel,2
-                ) ;
-
-            return View(model);
-        }
-        public ActionResult Edit(int id)
-        {
-            var model = _repository.GetById(id);
-            var dtos = _mapper.Map<RecipeBLL.DTOS.CategoryDTO>(model);
-            var viewModel = _mapper.Map<CategoryViewModel>(dtos);
-
-
-            return View(viewModel);
-        }
-        [HttpPost]
-        public ActionResult Edit(CategoryViewModel model)
-        {
-
-            model.UserId = 2;
-            var dtos = _mapper.Map<RecipeBLL.DTOS.CategoryDTO>(model);
-            var categoryModel = _mapper.Map<Category>(dtos);
-            _repository.Update(categoryModel, 2);
-
-            return View(model);
-        }
+       
     }
 }

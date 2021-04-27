@@ -1,8 +1,11 @@
-﻿@{
+﻿@model RecipeApp.Models.ViewModels.RecipeIngridientViewModel
+
+@{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 <html>
 <body>
+    
 
     <!-- Subheader Start -->
     <div class="metro_subheader dark-overlay dark-overlay-2" style="        background-image: url(/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/subheader.jpg)">
@@ -26,25 +29,29 @@
             <div class="row">
                 <div class="col-lg-8">
                     <form method="post">
-
+                     
                         <div class="metro_recipe-submit-section">
                             <div class="form-group">
                                 <label>Recipe Name</label>
-                                <input type="text" class="form-control" name="recipe-name" value="" placeholder="Recipe Name">
+                                <input type="text" class="form-control" name="@Model.RecipeViewModel.Name" value="" placeholder="Recipe Name">
                             </div>
                             <div class="form-group">
                                 <label>Select Category</label>
-                                <select class="form-control" name="recipe-category">
-                                    <option value="breakfast">Breakfast</option>
-                                    <option value="burgers">Burgers</option>
-                                    <option value="Pizza">Pizza</option>
-                                    <option value="Lunch">Lunch</option>
-                                    <option value="Dinner">Dinner</option>
+                                <select class="form-control" name="@ViewBag.Category">
+                                    @foreach (var cat in ViewBag.Category)
+                                    {
+                                        <option value="@cat.Id">@cat.Name</option>
+                                    }
+                                    @*<option value="breakfast">Breakfast</option>
+                    <option value="burgers">Burgers</option>
+                    <option value="Pizza">Pizza</option>
+                    <option value="Lunch">Lunch</option>*@
+
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Recipe Description</label>
-                                <textarea name="recipe-description" rows="8" class="form-control" placeholder="Write Description"></textarea>
+                                <textarea name="@Model.RecipeViewModel.Description" rows="8" class="form-control" placeholder="Write Description"></textarea>
                             </div>
                         </div>
 
@@ -58,25 +65,25 @@
                             </div>
                         </div>
 
-                        <div class="metro_recipe-submit-section">
-                            <div class="row">
-                                <div class="col-12">
-                                    <label>Additional Information</label>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" name="recipe-prep-time" value="" placeholder="Prep Time">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" name="recipe-cook-time" value="" placeholder="Cook Time">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" name="recipe-serving" value="" placeholder="Servings">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" name="recipe-difficulty" value="" placeholder="Difficulty">
-                                </div>
-                            </div>
-                        </div>
+                        @*<div class="metro_recipe-submit-section">
+            <div class="row">
+                <div class="col-12">
+                    <label>Additional Information</label>
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" name="recipe-prep-time" value="" placeholder="Prep Time">
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" name="recipe-cook-time" value="" placeholder="Cook Time">
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" name="recipe-serving" value="" placeholder="Servings">
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" name="recipe-difficulty" value="" placeholder="Difficulty">
+                </div>
+            </div>
+        </div>*@
 
                         <div class="metro_recipe-submit-section">
                             <div class="row">
@@ -84,19 +91,14 @@
                                     <label>Ingredients</label>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" name="recipe-prep-time" value="" placeholder="Prep Time">
+                                    <input type="text" class="form-control" name="@Model.IngridientViewModel.Name" value="" placeholder="Prep Time">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" name="recipe-cook-time" value="" placeholder="Cook Time">
+                                    <input type="text" class="form-control" name="@Model.IngridientViewModel.Quantity" value="" placeholder="Cook Time">
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" name="recipe-serving" value="" placeholder="Servings">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" name="recipe-difficulty" value="" placeholder="Difficulty">
-                                </div>
+
                                 <div class="form-group col-12">
-                                    <button type="button" class="metro_btn-custom secondary" name="button">Add Ingredients</button>
+                                    <button type="button" class="metro_btn-custom secondary" name="button" id="addingridientbutton" onclick="myFun()">Add Ingredients</button>
                                 </div>
                             </div>
                         </div>
@@ -266,3 +268,33 @@
     </div>
 </body>
 </html>
+<script>
+
+                function myFun() {
+
+                    var button = document.getElementById('addingridientbutton');
+                    button.onclick = function () {
+                       var name = document.createElement("INPUT");
+                    name.setAttribute("type", "text");
+                    name.setAttribute("id", "file");
+                    name.setAttribute("Name", "@Model.IngridientViewModel.Name");
+                    name.innerHTML = "CLICK ME";
+                    document.body.appendChild(name);
+                    var quantity = document.createElement("INPUT");
+                    quantity.setAttribute("type", "text");
+                    quantity.setAttribute("id", "file");
+                    quantity.innerHTML = "CLICK ME";
+                    quantity.setAttribute("Name", "@Model.IngridientViewModel.Quantity");
+                    document.body.appendChild(quantity);
+                    }
+            }
+
+
+</script>
+<script>
+    function myFunction() {
+        var btn = document.createElement("BUTTON");
+        btn.innerHTML = "CLICK ME";
+        document.body.appendChild(btn);
+    }
+</script>

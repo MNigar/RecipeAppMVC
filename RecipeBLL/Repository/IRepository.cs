@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace RecipeBLL.Repository
 {
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<TDTO> where TDTO : class
+
     {
-        IQueryable<TEntity> GetAll();
+        IQueryable<TDTO> GetAll();
 
-        TEntity GetById(int id);
+        TDTO GetById(int id);
 
 
-        void Create(TEntity entity,int userId);
+        void Create(TDTO entity,int userId);
 
-        void Update( TEntity entity, int userId);
+        void Update(TDTO entity, int userId);
 
-        void Delete(int id);
+        void Delete(int id, int userId);
 
     }
 

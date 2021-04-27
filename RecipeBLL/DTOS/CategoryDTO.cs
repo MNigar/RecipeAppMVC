@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RecipeDAL.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,6 @@ namespace RecipeBLL.DTOS
         public string Name { get; set; }
         
         public int UserId { get; set; }
-
+        public virtual User User { get; set; }
     }
 }

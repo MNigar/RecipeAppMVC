@@ -14,6 +14,7 @@ namespace RecipeDAL.Context
         public RecipeContext() : base("RecipeApp") { }
         public virtual DbSet<Recipe> Recipes { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Ingridient> Ingridients { get; set; }
 
         public virtual DbSet<User> Users { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

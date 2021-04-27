@@ -8,22 +8,30 @@ using System.Web;
 namespace RecipeApp.Models
 {
     public class RecipeViewModel
-    {   
+    {
 
-       public int Id { get; set; }
-
+        [Required]
         [MaxLength(200)]
-        public string Ingridients { get; set; }
+        public string Name { get; set; }
 
+        public virtual HashSet<Ingridient> Ingridients { get; set; }
 
-        public string Quantity { get; set; }
-        [MaxLength(200)]
+        [Required]
+        [MaxLength(500)]
+
         public string Description { get; set; }
 
+
         public int Status { get; set; }
+        [Required]
+
         public int CategoryId { get; set; }
+
         public virtual Category Category { get; set; }
+
         public int UserId { get; set; }
+       
         public virtual User User { get; set; }
+
     }
 }

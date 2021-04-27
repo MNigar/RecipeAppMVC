@@ -1,4 +1,5 @@
-﻿using RecipeBLL.DTOS;
+﻿using AutoMapper;
+using RecipeBLL.DTOS;
 using RecipeDAL.Context;
 using RecipeDAL.DAL;
 using System;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace RecipeBLL.Repository.Recipe
 {
-    public class RecipeRepository : RepositoryClass<RecipeDAL.DAL.Recipe>, IRecipeRepository
+    public class RecipeRepository : RepositoryClass<RecipeDTO, RecipeDAL.DAL.Recipe>, IRecipeRepository
     {
-        public RecipeRepository(RecipeContext dbContext) : base(dbContext)
+        public RecipeRepository(RecipeContext dbContext,IMapper mapper) : base(dbContext,mapper)
         {
 
         }

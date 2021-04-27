@@ -1,32 +1,40 @@
-﻿using RecipeDAL.Context;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using RecipeBLL.DTOS;
+using RecipeDAL.Context;
 using RecipeDAL.DAL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RecipeBLL.Repository
 {
-   public class RepositoryClass<TEntity> : IRepository<TEntity> where TEntity :  BaseDAO
+   public class RepositoryClass<TDto, TDao> : IRepository<TDto> where TDto :  BaseDTO
+        where TDao : BaseDAO
     {
         private readonly RecipeContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public RepositoryClass(RecipeContext dbContext)
+        public RepositoryClass(RecipeContext dbContext,IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
         //RecipeContext _dbContext = new RecipeContext();
-        public void Create(TEntity entity,int userId=0)
+        public void Create(TDto entity,int userId=0)
         {
             try
             {
-                entity.CreatedUserId = userId;
-                entity.CreatedDate = DateTime.Now;
-                entity.ModifiedDate = null;
+                var model = _mapper.Map<TDao>(entity);
+                model.CreatedUserId = userId;
+                model.CreatedDate = DateTime.Now;
+                model.ModifiedDate = null;
                 using (var transaction = _dbContext.Database.BeginTransaction())
                 {
-                    _dbContext.Set<TEntity>().Add(entity);
+                    _dbContext.Set<TDao>().Add(model);
                     _dbContext.SaveChanges();
                     transaction.Commit();
                 }
@@ -38,42 +46,70 @@ namespace RecipeBLL.Repository
             }
         }
 
-        public void Delete(int id)
+        public void Delete(int id,int userId=0)
         {
-            var entity = _dbContext.Set<TEntity>().Find(id);
-            _dbContext.Set<TEntity>().Remove(entity);
-            _dbContext.SaveChanges();
+            //var entity = _dbContext.Set<TEntity>().Find(id);
+            //_dbContext.Set<TEntity>().Remove(entity);
+            //_dbContext.SaveChanges();
+            try
+            {
+                var dao = _dbContext.Set<TDao>().FirstOrDefault(e => e.Id == id);
+                _dbContext.Entry(dao).State = EntityState.Deleted;
+                var result = _dbContext.SaveChanges();
+               
+            }
+            catch (Exception ex)
+            {
+                
+            }
         }
 
-        public IQueryable<TEntity> GetAll()
+        public IQueryable<TDto> GetAll()
         {
-            return _dbContext.Set<TEntity>();
+            //return _dbContext.Set<TEntity>();
+            
+              
+                var entities = _dbContext.Set<TDao>().ProjectTo<TDto>(_mapper.ConfigurationProvider);
+                var list = entities.ToList().AsQueryable();
+                //var entitiess = ctx.Set<TDao>();
+                //var t = _mapper.Map<IQueryable<TDto>>(entitiess);
+                return list;
+
+            
         }
 
-        public TEntity GetById(int id)
+        public TDto GetById(int id)
         {
-            return _dbContext.Set<TEntity>()
-                .AsNoTracking()
-                .FirstOrDefault(e => e.Id == id);
+           
+            var dao = _dbContext.Set<TDao>().FirstOrDefault(e => e.Id == id);
+            var dto = _mapper.Map<TDto>(dao);
+            return dto;
         }
-        public IEnumerable<TEntity> Find(System.Linq.Expressions.Expression<System.Func<TEntity, bool>> predicate)
-        {
-            return _dbContext.Set<TEntity>()
-                .AsNoTracking()
-                .Where(predicate).ToList();
-        }
-        public void Update(/*int id,*/ TEntity entity,int userId=0  )
+
+        //public TEntity GetById(int id)
+        //{
+        //    return _dbContext.Set<TEntity>()
+        //        .AsNoTracking()
+        //        .FirstOrDefault(e => e.Id == id);
+        //}
+        //public IEnumerable<TEntity> Find(System.Linq.Expressions.Expression<System.Func<TEntity, bool>> predicate)
+        //{
+        //    return _dbContext.Set<TEntity>()
+        //        .AsNoTracking()
+        //        .Where(predicate).ToList();
+        //}
+        public void Update(/*int id,*/ TDto entity,int userId=0  )
         {
             //var data = _dbContext.Entry(entity);
             //data.State = System.Data.Entity.EntityState.Modified;
             //_dbContext.SaveChanges();
             try
             {
-              
-               
+                var model = _mapper.Map<TDao>(entity);
+
                 using (var transaction = _dbContext.Database.BeginTransaction())
                 {
-                    var dbModel = _dbContext.Set<TEntity>().FirstOrDefault(x => x.Id == entity.Id);
+                    var dbModel = _dbContext.Set<TDao>().FirstOrDefault(x => x.Id == model.Id);
                     dbModel.ModifiedUserId = userId;
                     dbModel.ModifiedDate = DateTime.Now;
                     var entry = _dbContext.Entry(dbModel);
