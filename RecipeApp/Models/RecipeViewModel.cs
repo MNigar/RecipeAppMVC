@@ -9,6 +9,8 @@ namespace RecipeApp.Models
 {
     public class RecipeViewModel
     {
+   
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(200)]

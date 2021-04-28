@@ -9,7 +9,7 @@ namespace RecipeApp.Models.ViewModels
     {
         public CategoryViewModel CategoryViewModel { get; set; }
         public RecipeViewModel RecipeViewModel { get; set; }
-        public IngridientViewModel IngridientViewModel { get; set; }
+        public IngridientList IngridientViewModel { get; set; }
 
 
     }

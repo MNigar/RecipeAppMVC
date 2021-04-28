@@ -13,6 +13,7 @@ using RecipeBLL.DTOS;
 using RecipeBLL.Repository.Category;
 using RecipeBLL.Repository.Ingridient;
 using RecipeBLL.Repository.Recipe;
+using RecipeDAL.Context;
 using RecipeDAL.DAL;
 using Unity;
 
@@ -27,12 +28,14 @@ namespace RecipeApp.Controllers
         private readonly IRecipeRepository _repository;
         private readonly ICategoryRepository _catrepository;
         private readonly IIngridientRepository _ingridientrepository;
-        public RecipesController(IRecipeRepository repository ,IMapper mapper, ICategoryRepository catrepository, IIngridientRepository ingridientrepository)
+        private readonly RecipeContext _recipeContext;
+        public RecipesController(IRecipeRepository repository ,IMapper mapper, ICategoryRepository catrepository, IIngridientRepository ingridientrepository, RecipeContext recipeContext)
         {
             _mapper = mapper;
             _repository = repository;
             _catrepository = catrepository;
             _ingridientrepository = ingridientrepository;
+            _recipeContext = recipeContext;
         }
         // GET: Recipes
         [HttpGet]
@@ -70,34 +73,65 @@ namespace RecipeApp.Controllers
 
       
 
-        public ActionResult Create()
+        public ActionResult Creates()
         {
             var data = _catrepository.GetAll();
 
             var catViewModel = _mapper.Map<List<CategoryViewModel>>(data);
             RecipeIngridientViewModel model = new RecipeIngridientViewModel();
             model.RecipeViewModel = new RecipeViewModel();
-            model.IngridientViewModel = new IngridientViewModel();
+            model.IngridientViewModel = new IngridientList();
             
             ViewBag.Category = catViewModel;
 
 
             return View(model);
         }
+        //[HttpPost]
+        //public ActionResult Creates(RecipeIngridientViewModel model)
+        //{
+
+
+        //    ////model.RecipeViewModel = new RecipeViewModel();
+        //    //model.RecipeViewModel.Status = 0;
+        //    //model.RecipeViewModel.UserId = 2;
+        //    var recipe = _mapper.Map<RecipeBLL.DTOS.RecipeDTO>(model.RecipeViewModel);
+        //    var ingridients = _mapper.Map<IngridientDTO>(model.IngridientViewModel);
+            
+        //    //var categoryModel = _mapper.Map<Category>(persondtos);
+        //    _repository.Create(recipe, 2);
+        //    _ingridientrepository.Create(ingridients, 0);
+        //    return View(model);
+        //}
         [HttpPost]
-        public ActionResult Create(RecipeIngridientViewModel model)
+        public void Creates(FormCollection form)
         {
-
-            
-            
+            var id = _recipeContext.Recipes.OrderByDescending(x => x.Id).FirstOrDefault();
+            var t = (id != null) ? id.Id++ : 1;
+         
+            RecipeIngridientViewModel model = new RecipeIngridientViewModel();
+            model.RecipeViewModel = new RecipeViewModel();
+            model.RecipeViewModel.Status = 0;
+            model.RecipeViewModel.UserId = 2;
+            model.RecipeViewModel.Id = t;
+            model.RecipeViewModel.Name = Request.Form["name"];
+            model.RecipeViewModel.Description = Request.Form["Description"];
+            model.RecipeViewModel.CategoryId =Convert.ToInt32 (Request.Form["categoryId"]);
             var recipe = _mapper.Map<RecipeBLL.DTOS.RecipeDTO>(model.RecipeViewModel);
-            var ingridients = _mapper.Map<IngridientDTO>(model.IngridientViewModel);
+            _repository.Create(recipe, model.RecipeViewModel.UserId);
+            model.IngridientViewModel = new IngridientList();
+            model.IngridientViewModel.IngridientLists = new List<IngridientViewModel>();
+            var ingridinetlist = new List<string>();
+            ingridinetlist = Request.Form["name"].Split(',');
+            model.IngridientViewModel.IngridientLists.Add(new IngridientViewModel() { Name = Request.Form["IngridientName"] ,Quantity=Request.Form["IngridientQuantity"],RecipeId= model.RecipeViewModel.Id});
+            
+            var ingridients = _mapper.Map<IngridinetListDTO>(model.IngridientViewModel);
+            foreach(var i in ingridients.IngridientList)
+            {
+                _ingridientrepository.Create(i, 0);
 
-            //var categoryModel = _mapper.Map<Category>(persondtos);
-            _repository.Create(recipe, 2
-                );
-            _ingridientrepository.Create(ingridients, 2);
-            return View(model);
+            }
+
         }
         public ActionResult Edit(int id)
         {

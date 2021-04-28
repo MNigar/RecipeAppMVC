@@ -1,0 +1,313 @@
+﻿@model RecipeApp.Models.ViewModels.RecipeIngridientViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<html>
+<body>
+    
+
+    <!-- Subheader Start -->
+    <div class="metro_subheader dark-overlay dark-overlay-2" style="        background-image: url(/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/subheader.jpg)">
+        <div class="container">
+            <div class="metro_subheader-inner">
+                <h1>Submit Recipe</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Submit Recipe</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Subheader End -->
+    <!-- Post Content Start -->
+    <div class="section metro_post-single">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <form method="post" action="@Url.Action("Creates", "Recipes")">
+                        
+                        <div class="metro_recipe-submit-section">
+                            <div class="form-group">
+                                <label>Recipe Name</label>
+                                <input type="text" class="form-control" name="name"  placeholder="Recipe Name">
+                            </div>
+                            <div class="form-group">
+                                <label>Select Category</label>
+                                <select class="form-control" name="categoryId">
+                                    @foreach (var cat in ViewBag.Category)
+                                    {
+                                        <option value="@cat.Id">@cat.Name</option>
+                                    }
+                                    @*<option value="breakfast">Breakfast</option>
+                    <option value="burgers">Burgers</option>
+                    <option value="Pizza">Pizza</option>
+                    <option value="Lunch">Lunch</option>*@
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Recipe Description</label>
+                                <textarea name="Description" rows="8" class="form-control" placeholder="Write Description"></textarea>
+                            </div>
+                        </div>
+
+
+                        @*<div class="metro_recipe-submit-section">
+            <div class="row">
+                <div class="col-12">
+                    <label>Additional Information</label>
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" name="recipe-prep-time" value="" placeholder="Prep Time">
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" name="recipe-cook-time" value="" placeholder="Cook Time">
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" name="recipe-serving" value="" placeholder="Servings">
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" name="recipe-difficulty" value="" placeholder="Difficulty">
+                </div>
+            </div>
+        </div>*@
+
+                        <div class="metro_recipe-submit-section">
+                            <div class="row" id="ingridient">
+                                <div class="col-12">
+                                    <label>Ingredients</label>
+                                    <div class="form-group col-12">
+                                        <button type="button" class="metro_btn-custom secondary" name="button" id="addingridientbutton" onclick="myFun()">Add Ingredients</button>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" name="IngridientName" value="" placeholder="Name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" name="IngridientQuantity" value="" placeholder="Count/Amount etc.">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" name="IngridientName" value="" placeholder="Name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" name="IngridientQuantity" value="" placeholder="Count/Amount etc.">
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        @*<div class="metro_recipe-submit-section">
+            <div class="row">
+                <div class="col-12">
+                    <label>Nutrition Facts</label>
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" name="recipe-prep-time" value="" placeholder="Prep Time">
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" name="recipe-cook-time" value="" placeholder="Cook Time">
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" name="recipe-serving" value="" placeholder="Servings">
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" name="recipe-difficulty" value="" placeholder="Difficulty">
+                </div>
+                <div class="form-group col-12">
+                    <button type="button" class="metro_btn-custom secondary" name="button">Add Nutrition Facts</button>
+                </div>
+            </div>
+        </div>*@
+                        <div class="metro_recipe-submit-section p-0 border-0">
+                            <div class="form-group">
+                                <label>Upload Recipe Photos</label>
+                                <div class="metro_input-upload">
+                                    <button type="button" class="metro_btn-custom secondary" name="button">Upload Photos</button>
+                                    <input type="file" name="recipe-photos">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-right">
+                            <button type="submit" class="mt-4 metro_btn-custom" name="button">Submit Recipe</button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- Sidebar Start -->
+                <div class="col-lg-4">
+                    <div class="sidebar">
+
+                        <!-- Search Start -->
+                        <div class="sidebar-widget widget-search">
+                            <form method="post">
+                                <div class="metro_search-adv-input">
+                                    <input type="text" class="form-control" placeholder="Look for Fruits, Vegetables" name="search" value="">
+                                    <button type="submit" name="button"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Search End -->
+                        <!-- Sidebar CTA Start -->
+                        <div class="sidebar-widget sidebar-cta">
+                            <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/sidebar-cta.jpg" alt="Call To Action">
+                            <div class="sidebar-cta-content">
+                                <span>Good Food</span>
+                                <h6>Best Quality Food</h6>
+                                <a href="shop.html" class="metro_btn-custom">Shop Now</a>
+                            </div>
+                        </div>
+                        <!-- Sidebar CTA End -->
+                        <!-- Recent Posts Start -->
+                        <div class="sidebar-widget widget-recent-posts">
+                            <h5 class="widget-title">Recent Posts</h5>
+                            <article class="post">
+                                <a href="blog-details.html"><img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/blog/sm/1.jpg" alt="post"></a>
+                                <div class="post-content">
+                                    <a href="#"> Burgers </a>
+                                    <h6> <a href="blog-details.html">Tomato Stuffing with Cumin and Radish</a> </h6>
+                                </div>
+                            </article>
+                            <article class="post">
+                                <a href="blog-details.html"><img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/blog/sm/2.jpg" alt="post"></a>
+                                <div class="post-content">
+                                    <a href="#"> Pizza </a>
+                                    <h6> <a href="blog-details.html">Over Baked Pizza With Four Cheese</a> </h6>
+                                </div>
+                            </article>
+                            <article class="post">
+                                <a href="blog-details.html"><img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/blog/sm/3.jpg" alt="post"></a>
+                                <div class="post-content">
+                                    <a href="#"> Fast Food </a>
+                                    <h6> <a href="blog-details.html">Grilled Burgers With Tomato Paste</a> </h6>
+                                </div>
+                            </article>
+                            <article class="post">
+                                <a href="blog-details.html"><img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/blog/sm/4.jpg" alt="post"></a>
+                                <div class="post-content">
+                                    <a href="#"> Fast Food </a>
+                                    <h6> <a href="blog-details.html">American Style French Fries Air Fried</a> </h6>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- Recent Posts End -->
+                        <!-- Categories Start -->
+                        <div class="sidebar-widget">
+                            <h5 class="widget-title"> Post Categories </h5>
+                            <ul class="sidebar-widget-list">
+                                <li> <a href="#"> Vegan </a> </li>
+                                <li> <a href="#"> Breakfast </a> </li>
+                                <li> <a href="#"> Pizza </a> </li>
+                                <li> <a href="#"> Salads</a> </li>
+                                <li> <a href="#"> Drinks  </a> </li>
+                                <li> <a href="#"> Bread </a> </li>
+                                <li> <a href="#"> Lunch </a> </li>
+                                <li> <a href="#"> Dinner </a> </li>
+                            </ul>
+                        </div>
+                        <!-- Categories End -->
+                        <!-- Popular Tags Start -->
+                        <div class="sidebar-widget">
+                            <h5 class="widget-title">Popular Tags</h5>
+                            <div class="tagcloud">
+                                <a href="#">Health</a>
+                                <a href="#">Food</a>
+                                <a href="#">Ingredients</a>
+                                <a href="#">Organic</a>
+                                <a href="#">Farms</a>
+                                <a href="#">Green</a>
+                                <a href="#">Fiber</a>
+                                <a href="#">Supplements</a>
+                                <a href="#">Gain</a>
+                                <a href="#">Live Stock</a>
+                                <a href="#">Harvest</a>
+                            </div>
+                        </div>
+                        <!-- Popular Tags End -->
+
+                    </div>
+                </div>
+                <!-- Sidebar End -->
+
+            </div>
+
+        </div>
+    </div>
+    <!-- Product Content End -->
+    <!-- Instagram Start -->
+    <div class="row no-gutters">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-6 p-0">
+            <a href="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/ig/1.jpg" class="gallery-thumb metro_ig-item">
+                <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/ig/1.jpg" alt="ig">
+            </a>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-4 col-6 p-0">
+            <a href="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/ig/2.jpg" class="gallery-thumb metro_ig-item">
+                <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/ig/2.jpg" alt="ig">
+            </a>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-4 col-6 p-0">
+            <a href="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/ig/3.jpg" class="gallery-thumb metro_ig-item">
+                <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/ig/3.jpg" alt="ig">
+            </a>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-4 col-6 p-0">
+            <a href="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/ig/4.jpg" class="gallery-thumb metro_ig-item">
+                <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/ig/4.jpg" alt="ig">
+            </a>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-4 col-6 p-0">
+            <a href="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/ig/5.jpg" class="gallery-thumb metro_ig-item">
+                <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/ig/5.jpg" alt="ig">
+            </a>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-4 col-6 p-0">
+            <a href="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/ig/6.jpg" class="gallery-thumb metro_ig-item">
+                <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/ig/6.jpg" alt="ig">
+            </a>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+
+                function myFun() {
+
+                    var div1 = document.createElement("div");
+
+                    div1.setAttribute("class", "form-group col-md-6");
+
+                    var div2 = document.createElement("div");
+
+                    div2.setAttribute("class", "form-group col-md-6");
+
+                       var name = document.createElement("INPUT");
+                    name.setAttribute("type", "text");
+            /*  *//*  *//*  *//*  //*/name.setAttribute("id", "file1");
+                    name.setAttribute("Name", "IngridientName");
+                    name.innerHTML = "Name";
+                    name.setAttribute("class", "form-control");
+                    name.setAttribute("placeholder", "Name")
+                    var quantity = document.createElement("INPUT");
+                    quantity.setAttribute("type", "text");
+                    quantity.setAttribute("id", "file");
+                    quantity.innerHTML = "Quantity";
+                    quantity.setAttribute("class", "form-control");
+                    quantity.setAttribute("Name", "IngridientQuantity");
+                    quantity.setAttribute("placeholder", "Count/Amount etc.")
+                    var button = document.getElementById("ingridient");
+                    div1.appendChild(name);
+                    div2.appendChild(quantity)
+                    button.appendChild(div1);
+                    button.appendChild(div2);
+
+            }
+
+
+</script>

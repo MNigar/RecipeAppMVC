@@ -1,6 +1,7 @@
 using AutoMapper;
 using RecipeApp.Controllers;
 using RecipeApp.Models;
+using RecipeApp.Models.ViewModels;
 using RecipeBLL.DTOS;
 using RecipeBLL.Repository.Category;
 using RecipeBLL.Repository.Ingridient;
@@ -38,6 +39,9 @@ namespace RecipeApp
                 cfg.CreateMap<CategoryDTO,CategoryViewModel>();
                 cfg.CreateMap<IngridientViewModel, IngridientDTO>();
                 cfg.CreateMap<IngridientDTO, Ingridient>();
+                cfg.CreateMap< IngridientList,IngridinetListDTO>();
+
+                
                 //...
             });
             IMapper mapper = config.CreateMapper();
