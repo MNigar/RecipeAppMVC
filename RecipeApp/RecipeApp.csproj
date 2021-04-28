@@ -145,6 +145,7 @@
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\IngridientViewModel.cs" />
     <Compile Include="Models\RecipeViewModel.cs" />
+    <Compile Include="Models\ViewModels\Mail.cs" />
     <Compile Include="Models\ViewModels\RecipeIngridientViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

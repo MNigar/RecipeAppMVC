@@ -86,20 +86,27 @@
         </div>*@
 
                         <div class="metro_recipe-submit-section">
-                            <div class="row">
+                            <div class="row" id="ingridient">
                                 <div class="col-12">
                                     <label>Ingredients</label>
+                                    <div class="form-group col-12">
+                                        <button type="button" class="metro_btn-custom secondary" name="button" id="addingridientbutton" onclick="myFun()">Add Ingredients</button>
+                                    </div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" name="@Model.IngridientViewModel.Name" value="" placeholder="Prep Time">
+                                    <input type="text" class="form-control" name="@Model.IngridientViewModel.Name" value="" placeholder="Name">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" name="@Model.IngridientViewModel.Quantity" value="" placeholder="Cook Time">
+                                    <input type="text" class="form-control" name="@Model.IngridientViewModel.Quantity" value="" placeholder="Count/Amount etc.">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" name="@Model.IngridientViewModel.Name" value="" placeholder="Name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" name="@Model.IngridientViewModel.Quantity" value="" placeholder="Count/Amount etc.">
                                 </div>
 
-                                <div class="form-group col-12">
-                                    <button type="button" class="metro_btn-custom secondary" name="button" id="addingridientbutton" onclick="myFun()">Add Ingredients</button>
-                                </div>
+
                             </div>
                         </div>
 
@@ -269,32 +276,38 @@
 </body>
 </html>
 <script>
-
+    
                 function myFun() {
 
-                    var button = document.getElementById('addingridientbutton');
-                    button.onclick = function () {
+                    var div1 = document.createElement("div");
+
+                    div1.setAttribute("class", "form-group col-md-6");
+                   
+                    var div2 = document.createElement("div");
+
+                    div2.setAttribute("class", "form-group col-md-6");
+
                        var name = document.createElement("INPUT");
                     name.setAttribute("type", "text");
-                    name.setAttribute("id", "file");
+            /*  *//*  *//*  *//*  //*/name.setAttribute("id", "file1");
                     name.setAttribute("Name", "@Model.IngridientViewModel.Name");
-                    name.innerHTML = "CLICK ME";
-                    document.body.appendChild(name);
+                    name.innerHTML = "Name";
+                    name.setAttribute("class", "form-control");
+                    name.setAttribute("placeholder", "Name")
                     var quantity = document.createElement("INPUT");
                     quantity.setAttribute("type", "text");
                     quantity.setAttribute("id", "file");
-                    quantity.innerHTML = "CLICK ME";
+                    quantity.innerHTML = "Quantity";
+                    quantity.setAttribute("class", "form-control");
                     quantity.setAttribute("Name", "@Model.IngridientViewModel.Quantity");
-                    document.body.appendChild(quantity);
-                    }
+                    quantity.setAttribute("placeholder", "Count/Amount etc.")
+                    var button = document.getElementById("ingridient");
+                    div1.appendChild(name);
+                    div2.appendChild(quantity)
+                    button.appendChild(div1);
+                    button.appendChild(div2);
+
             }
 
 
-</script>
-<script>
-    function myFunction() {
-        var btn = document.createElement("BUTTON");
-        btn.innerHTML = "CLICK ME";
-        document.body.appendChild(btn);
-    }
 </script>

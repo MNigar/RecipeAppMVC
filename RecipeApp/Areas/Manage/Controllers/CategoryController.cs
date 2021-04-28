@@ -1,12 +1,16 @@
 ﻿using AutoMapper;
 using RecipeApp.Models;
+using RecipeApp.Models.ViewModels;
 using RecipeBLL.DTOS;
 using RecipeBLL.Repository.Category;
 using RecipeDAL.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace RecipeApp.Areas.Manage.Controllers
@@ -47,6 +51,34 @@ namespace RecipeApp.Areas.Manage.Controllers
             //var categoryModel = _mapper.Map<Category>(persondtos);
             _repository.Create(persondtos, 2
                 );
+            //"zafbvjohiihelqgn"
+                int port = 587;
+            string smtpServer = "smtp.gmail.com";
+            string smtpUserName = "nigarmammadova4t@gmail.com";
+            string smtpUserPass = "muhendis@@";
+
+            using (SmtpClient smtpSend = new SmtpClient())
+            {
+                smtpSend.Host = smtpServer;
+                smtpSend.Port = port;
+
+                smtpSend.Credentials = new System.Net.NetworkCredential(smtpUserName, smtpUserPass);
+
+                smtpSend.EnableSsl = true;
+
+                MailMessage emailMessage = new System.Net.Mail.MailMessage();
+
+                emailMessage.To.Add("nigar-4t@live.com");
+                emailMessage.From = new MailAddress("nigarmammadova4t@gmail.com");
+                emailMessage.Subject = "dffff";
+                emailMessage.Body = "fffffF";
+
+                
+
+                smtpSend.Send(emailMessage);
+            }
+
+
 
             return View(model);
         }

@@ -30,3 +30,5 @@ D:\COVID1904\MVCProject\RecipeApp\RecipeBLL\obj\Debug\RecipeBLL.csproj.CoreCompi
 D:\COVID1904\MVCProject\RecipeApp\RecipeBLL\obj\Debug\RecipeBLL.csproj.CopyComplete
 D:\COVID1904\MVCProject\RecipeApp\RecipeBLL\obj\Debug\RecipeBLL.dll
 D:\COVID1904\MVCProject\RecipeApp\RecipeBLL\obj\Debug\RecipeBLL.pdb
+D:\C#course\RecipeAppMVC\RecipeBLL\bin\Debug\AutoMapper.dll
+D:\C#course\RecipeAppMVC\RecipeBLL\bin\Debug\AutoMapper.xml
