@@ -26,8 +26,10 @@ namespace RecipeDAL.DAL
         [MaxLength(500)]
 
         public string Description { get; set; }
+        public string Photo { get; set; }
+        [Required]
+        public string Duration { get; set; }
 
-       
         public int Status { get; set; }
         [Required]
        

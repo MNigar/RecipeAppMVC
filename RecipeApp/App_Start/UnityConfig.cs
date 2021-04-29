@@ -26,11 +26,13 @@ namespace RecipeApp
             var container = new UnityContainer();
             container.RegisterType<IRecipeRepository,RecipeBLL.Repository.Recipe.RecipeRepository>();
             container.RegisterType<IIngridientRepository, RecipeBLL.Repository.Ingridient.IngridientRepository>();
+
             container.RegisterType<ICategoryRepository, RecipeBLL.Repository.Category.CategoryRepository>();
             var config = new MapperConfiguration(cfg =>
             {
                 //Create all maps here
                 cfg.CreateMap<RecipeViewModel, RecipeDTO>();
+                cfg.CreateMap<RecipeDTO, RecipeViewModel>();
                 cfg.CreateMap<RecipeDTO, Recipe>();
                 cfg.CreateMap<Recipe, RecipeDTO>();
                 cfg.CreateMap<CategoryViewModel, CategoryDTO>();
@@ -40,8 +42,8 @@ namespace RecipeApp
                 cfg.CreateMap<IngridientViewModel, IngridientDTO>();
                 cfg.CreateMap<IngridientDTO, Ingridient>();
                 cfg.CreateMap< IngridientList,IngridinetListDTO>();
+                cfg.CreateMap<Ingridient, IngridientDTO>();
 
-                
                 //...
             });
             IMapper mapper = config.CreateMapper();

@@ -34,6 +34,7 @@ namespace RecipeApp.Models
         public int UserId { get; set; }
        
         public virtual User User { get; set; }
-
+        public string Photo { get; set; }
+        public string Duration { get; set; }
     }
 }

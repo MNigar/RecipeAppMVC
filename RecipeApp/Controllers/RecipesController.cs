@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using RecipeApp.Helper;
 using RecipeApp.Models;
 using RecipeApp.Models.ViewModels;
 using RecipeBLL.DTOS;
@@ -67,11 +69,37 @@ namespace RecipeApp.Controllers
         [HttpGet]
         public ActionResult RecipeGrid()
         {
-            return View();
+            var data = _repository.GetAll().Where(x=>x.Status==(int) Helpers.status.Active);
+            var recipeViewModel = _mapper.Map<List<RecipeViewModel>>(data);
+            ViewBag.Category = recipeViewModel.Select(x => x.Category).ToList().Distinct();
+            return View(recipeViewModel);
+        }
+        [HttpGet]
+        public ActionResult Search(string Name, string categoryId,string user)
+        {
+            var result = _repository.GetAll();
+            
+            if (!String.IsNullOrEmpty(Name))
+            {
+                result = result.Where(x => x.Name.ToLower().Contains(Name.ToLower()));
+            }
+
+            if (!String.IsNullOrEmpty(user))
+            {
+                result = result.Where(x => x.User.Name.ToLower().Contains(user.ToLower()));
+            }
+            if (!String.IsNullOrEmpty(categoryId))
+            {
+                result = result.Where(x => x.CategoryId==Convert.ToInt32(categoryId));
+            }
+            var recipeViewModel = _mapper.Map<List<RecipeViewModel>>(result);
+            ViewBag.Category = recipeViewModel.Select(x => x.Category).ToList().Distinct();
+            return View(recipeViewModel);
+           
+
         }
 
 
-      
 
         public ActionResult Creates()
         {
@@ -104,7 +132,7 @@ namespace RecipeApp.Controllers
         //    return View(model);
         //}
         [HttpPost]
-        public void Creates(FormCollection form)
+        public void Creates(FormCollection form, HttpPostedFileBase Photo)
         {
             var forms = new Dictionary<string, string>();
             List<IngridientViewModel> newlist = new List<IngridientViewModel>();
@@ -134,25 +162,30 @@ namespace RecipeApp.Controllers
                 }
             }
            
-        
 
             var id = _recipeContext.Recipes.OrderByDescending(x => x.Id).FirstOrDefault();
-            var t = (id != null) ? id.Id++ : 1;
+            var newid = id.Id + 1;
+            var t = (id != null) ? newid : 1;
          
             RecipeIngridientViewModel model = new RecipeIngridientViewModel();
+
             model.RecipeViewModel = new RecipeViewModel();
+            string fName = Photo.FileName;
+            string path = Path.Combine(Server.MapPath("~/Upload"), fName);
+            Photo.SaveAs(path);
             model.RecipeViewModel.Status = 0;
             model.RecipeViewModel.UserId = 2;
             model.RecipeViewModel.Id = t;
             model.RecipeViewModel.Name = Request.Form["name"];
             model.RecipeViewModel.Description = Request.Form["Description"];
             model.RecipeViewModel.CategoryId =Convert.ToInt32 (Request.Form["categoryId"]);
+            model.RecipeViewModel.Photo = fName;
+            model.RecipeViewModel.Duration= Request.Form["Duration"];
             var recipe = _mapper.Map<RecipeBLL.DTOS.RecipeDTO>(model.RecipeViewModel);
             _repository.Create(recipe, model.RecipeViewModel.UserId);
             model.IngridientViewModel = new IngridientList();
             model.IngridientViewModel.IngridientLists = new List<IngridientViewModel>();
             var ingridinetlist = new List<string>();
-            var list = new List<Tuple<string, string>>();
             foreach (var i in arrList)
             {
                 newlist.Add(new IngridientViewModel()
@@ -163,19 +196,27 @@ namespace RecipeApp.Controllers
                 });
             }
 
-            Request.Form["name"].Split(',');
-       
-                model.IngridientViewModel.IngridientLists.Add(new IngridientViewModel());
+           
+            foreach(var ing in newlist)
+            {
+                model.IngridientViewModel.IngridientLists.Add(new IngridientViewModel()
+                {   Name=ing.Name,
+                    Quantity=ing.Quantity,
+                    RecipeId=ing.RecipeId
+                });
+
+            }
 
             //new IngridientViewModel() { 
             //Name = Request.Form["IngridientName"] ,
             //Quantity=Request.Form["IngridientQuantity"],
             //RecipeId= model.RecipeViewModel.Id});
-           
-            var ingridients = _mapper.Map<IngridinetListDTO>(model.IngridientViewModel);
-            foreach(var i in ingridients.IngridientList)
+
+            
+            foreach(var i in model.IngridientViewModel.IngridientLists)
             {
-                _ingridientrepository.Create(i, 0);
+                var ingridient = _mapper.Map<IngridientDTO>(i);
+                _ingridientrepository.Create(ingridient, 0);
 
             }
 

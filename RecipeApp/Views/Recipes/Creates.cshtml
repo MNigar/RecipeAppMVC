@@ -28,12 +28,12 @@
 
             <div class="row">
                 <div class="col-lg-8">
-                    <form method="post" action="@Url.Action("Creates", "Recipes")">
+                    <form method="post" action="@Url.Action("Creates", "Recipes")" enctype="multipart/form-data">
                         
                         <div class="metro_recipe-submit-section">
                             <div class="form-group">
                                 <label>Recipe Name</label>
-                                <input type="text" class="form-control" name="name"  placeholder="Recipe Name">
+                                <input type="text" class="form-control" name="name" placeholder="Recipe Name">
                             </div>
                             <div class="form-group">
                                 <label>Select Category</label>
@@ -43,15 +43,19 @@
                                         <option value="@cat.Id">@cat.Name</option>
                                     }
                                     @*<option value="breakfast">Breakfast</option>
-                    <option value="burgers">Burgers</option>
-                    <option value="Pizza">Pizza</option>
-                    <option value="Lunch">Lunch</option>*@
+                <option value="burgers">Burgers</option>
+                <option value="Pizza">Pizza</option>
+                <option value="Lunch">Lunch</option>*@
 
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Recipe Description</label>
                                 <textarea name="Description" rows="8" class="form-control" placeholder="Write Description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Duration</label>
+                                <input type="text" class="form-control" name="Duration" placeholder="Duration">
                             </div>
                         </div>
 
@@ -128,7 +132,7 @@
                                 <label>Upload Recipe Photos</label>
                                 <div class="metro_input-upload">
                                     <button type="button" class="metro_btn-custom secondary" name="button">Upload Photos</button>
-                                    <input type="file" name="recipe-photos">
+                                    <input type="file" name="Photo" >
                                 </div>
                             </div>
                         </div>

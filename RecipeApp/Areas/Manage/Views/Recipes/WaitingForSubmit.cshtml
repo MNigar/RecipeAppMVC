@@ -1,0 +1,116 @@
+﻿@model IEnumerable<RecipeApp.Models.RecipeViewModel>
+
+@{
+    ViewBag.Title = "WaitingForSubmit";
+}
+
+<h2>WaitingForSubmit</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duration)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Photo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duration)
+        </td>
+        <td>
+            @Html.ActionLink("Submit", "Recipes", new { id=item.Id }) |
+            <div id="dontchange">
+                @*@Html.ActionLink("Cancel", "Recipes", new { id = item.Id }, new { htmlAttributes = new { @class = "form-control", @onclick ="myFun()" } })  |*@
+          <button onclick="myFun()">Cancel</button>
+            </div>
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+<script>
+
+
+
+    function myFun() {
+
+
+                    var div1 = document.createElement("div");
+
+                    div1.setAttribute("class", "form-group col-md-6");
+                    div1.setAttribute("id", "reason");
+
+                    var name = document.createElement("INPUT");
+                    name.setAttribute("type", "text");
+            /*  *//*  *//*  *//*  //*/name.setAttribute("id","file");
+                    name.setAttribute("Name", "Reason");
+                    name.innerHTML = "Reason";
+                    name.setAttribute("class", "form-control");
+                    name.setAttribute("placeholder", "Description")
+
+        var div2 = document.createElement("div");
+
+        div2.setAttribute("class", "form-group col-md-6");
+        div2.setAttribute("id", "save");
+
+        var savebutton = document.createElement("input");
+        savebutton.setAttribute("type", "button");
+            /*  *//*  *//*  *//*  //*/name.setAttribute("id", "reasonsave");
+        savebutton.setAttribute("Name", "reasonsave");
+        savebutton.innerHTML = "Save";
+        savebutton.setAttribute("class", "form-control");
+        savebutton.setAttribute("onclick","location.href='@Url.Action("Cancel", "Recipes", new { id = item.id })'")
+
+        var button = document.getElementById("dontchange");
+        div1.appendChild(name);
+        div2.append(savebutton);
+                    button.appendChild(div1);
+
+                    button.appendChild(div2);
+
+            }
+
+
+</script>

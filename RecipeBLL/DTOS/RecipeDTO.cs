@@ -22,10 +22,11 @@ namespace RecipeBLL.DTOS
 
 
         public int Status { get; set; }
-      
+
+        public string Photo { get; set; }
 
         public int CategoryId { get; set; }
-
+        public string Duration { get; set; }
         public virtual Category Category { get; set; }
 
         public int UserId { get; set; }
