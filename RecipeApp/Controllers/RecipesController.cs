@@ -106,6 +106,36 @@ namespace RecipeApp.Controllers
         [HttpPost]
         public void Creates(FormCollection form)
         {
+            var forms = new Dictionary<string, string>();
+            List<IngridientViewModel> newlist = new List<IngridientViewModel>();
+            List<string> arrList = new List<string>();
+            List<string> arrListQuantity = new List<string>();
+
+        
+            foreach (var key in form.AllKeys)
+            {
+                var value = form[key];
+                if (key == "IngridientName")
+                {
+                  string[]  arr = value.Split(',');
+                    foreach(var i in arr)
+                    {
+                        arrList.Add(i);
+                    }
+                    
+                }
+                if (key == "IngridientQuantity")
+                {
+                    string[] arr1 = value.Split(',');
+                    foreach (var i in arr1)
+                    {
+                        arrListQuantity.Add(i);
+                    }
+                }
+            }
+           
+        
+
             var id = _recipeContext.Recipes.OrderByDescending(x => x.Id).FirstOrDefault();
             var t = (id != null) ? id.Id++ : 1;
          
@@ -122,9 +152,26 @@ namespace RecipeApp.Controllers
             model.IngridientViewModel = new IngridientList();
             model.IngridientViewModel.IngridientLists = new List<IngridientViewModel>();
             var ingridinetlist = new List<string>();
-            ingridinetlist = Request.Form["name"].Split(',');
-            model.IngridientViewModel.IngridientLists.Add(new IngridientViewModel() { Name = Request.Form["IngridientName"] ,Quantity=Request.Form["IngridientQuantity"],RecipeId= model.RecipeViewModel.Id});
-            
+            var list = new List<Tuple<string, string>>();
+            foreach (var i in arrList)
+            {
+                newlist.Add(new IngridientViewModel()
+                {
+                    Name = i,
+                    Quantity = arrListQuantity[arrList.IndexOf(i)],
+                    RecipeId = model.RecipeViewModel.Id
+                });
+            }
+
+            Request.Form["name"].Split(',');
+       
+                model.IngridientViewModel.IngridientLists.Add(new IngridientViewModel());
+
+            //new IngridientViewModel() { 
+            //Name = Request.Form["IngridientName"] ,
+            //Quantity=Request.Form["IngridientQuantity"],
+            //RecipeId= model.RecipeViewModel.Id});
+           
             var ingridients = _mapper.Map<IngridinetListDTO>(model.IngridientViewModel);
             foreach(var i in ingridients.IngridientList)
             {
