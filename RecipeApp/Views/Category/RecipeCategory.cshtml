@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<RecipeApp.Models.CategoryViewModel>
+
+@{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 <html>
@@ -24,122 +26,22 @@
             <div class="row">
 
                 <!-- Category Start -->
-                <div class="col-md-4 col-sm-6">
-                    <a href="recipe-grid.html" class="metro_recipe-category">
-                        <div class="metro_recipe-category-thumb">
-                            <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/categories/2.jpg" alt="Recipe Category">
-                        </div>
-                        <div class="metro_recipe-category-content">
-                            <h5>Chicken Recipes</h5>
-                            <span class="custom-primary">Fast Food</span>
-                        </div>
-                    </a>
-                </div>
-                <!-- Category End -->
-                <!-- Category Start -->
-                <div class="col-md-4 col-sm-6">
-                    <a href="recipe-grid.html" class="metro_recipe-category">
-                        <div class="metro_recipe-category-thumb">
-                            <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/categories/1.jpg" alt="Recipe Category">
-                        </div>
-                        <div class="metro_recipe-category-content">
-                            <h5>Pizza Recipes</h5>
-                            <span class="custom-primary">Fast Food</span>
-                        </div>
-                    </a>
-                </div>
-                <!-- Category End -->
-                <!-- Category Start -->
-                <div class="col-md-4 col-sm-6">
-                    <a href="recipe-grid.html" class="metro_recipe-category">
-                        <div class="metro_recipe-category-thumb">
-                            <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/categories/3.jpg" alt="Recipe Category">
-                        </div>
-                        <div class="metro_recipe-category-content">
-                            <h5>Burger Recipes</h5>
-                            <span class="custom-primary">Fast Food</span>
-                        </div>
-                    </a>
-                </div>
-                <!-- Category End -->
-                <!-- Category Start -->
-                <div class="col-md-4 col-sm-6">
-                    <a href="recipe-grid.html" class="metro_recipe-category">
-                        <div class="metro_recipe-category-thumb">
-                            <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/categories/4.jpg" alt="Recipe Category">
-                        </div>
-                        <div class="metro_recipe-category-content">
-                            <h5>Soup Recipes</h5>
-                            <span class="custom-primary">Soups</span>
-                        </div>
-                    </a>
-                </div>
-                <!-- Category End -->
-                <!-- Category Start -->
-                <div class="col-md-4 col-sm-6">
-                    <a href="recipe-grid.html" class="metro_recipe-category">
-                        <div class="metro_recipe-category-thumb">
-                            <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/categories/5.jpg" alt="Recipe Category">
-                        </div>
-                        <div class="metro_recipe-category-content">
-                            <h5>Breakfast Recipes</h5>
-                            <span class="custom-primary">Breakfast</span>
-                        </div>
-                    </a>
-                </div>
-                <!-- Category End -->
-                <!-- Category Start -->
-                <div class="col-md-4 col-sm-6">
-                    <a href="recipe-grid.html" class="metro_recipe-category">
-                        <div class="metro_recipe-category-thumb">
-                            <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/categories/6.jpg" alt="Recipe Category">
-                        </div>
-                        <div class="metro_recipe-category-content">
-                            <h5>Salad Recipes</h5>
-                            <span class="custom-primary">Healthy</span>
-                        </div>
-                    </a>
-                </div>
-                <!-- Category End -->
-                <!-- Category Start -->
-                <div class="col-md-4 col-sm-6">
-                    <a href="recipe-grid.html" class="metro_recipe-category">
-                        <div class="metro_recipe-category-thumb">
-                            <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/categories/7.jpg" alt="Recipe Category">
-                        </div>
-                        <div class="metro_recipe-category-content">
-                            <h5>Italian Recipes</h5>
-                            <span class="custom-primary">Magnefique</span>
-                        </div>
-                    </a>
-                </div>
-                <!-- Category End -->
-                <!-- Category Start -->
-                <div class="col-md-4 col-sm-6">
-                    <a href="recipe-grid.html" class="metro_recipe-category">
-                        <div class="metro_recipe-category-thumb">
-                            <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/categories/8.jpg" alt="Recipe Category">
-                        </div>
-                        <div class="metro_recipe-category-content">
-                            <h5>Subs Recipes</h5>
-                            <span class="custom-primary">Fast Food</span>
-                        </div>
-                    </a>
-                </div>
-                <!-- Category End -->
-                <!-- Category Start -->
-                <div class="col-md-4 col-sm-6">
-                    <a href="recipe-grid.html" class="metro_recipe-category">
-                        <div class="metro_recipe-category-thumb">
-                            <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/categories/9.jpg" alt="Recipe Category">
-                        </div>
-                        <div class="metro_recipe-category-content">
-                            <h5>Chicken Recipes</h5>
-                            <span class="custom-primary">Fast Food</span>
-                        </div>
-                    </a>
-                </div>
-                <!-- Category End -->
+                @foreach (var i in Model)
+                {
+                    <div class="col-md-4 col-sm-6">
+                        <a href="/Category/Recipegrid/@i.Id " class="metro_recipe-category">
+                            <div class="metro_recipe-category-thumb">
+                                <img src="~/Upload/@i.Photo" alt="Recipe Category">
+                            </div>
+                            <div class="metro_recipe-category-content">
+                                <h5>@i.Name</h5>
+                                
+                            </div>
+                        </a>
+                    </div>
+
+                }
+
 
             </div>
 

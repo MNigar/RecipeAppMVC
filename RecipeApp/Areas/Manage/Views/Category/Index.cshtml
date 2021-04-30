@@ -15,7 +15,10 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-           <label>UserName</label>
+            <label>UserName</label>
+        </th>
+        <th>
+            <label>Photo</label>
         </th>
         <th></th>
     </tr>
@@ -27,6 +30,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.User.Name)
+        </td>
+        <td>
+            <img src="~/Upload/@item.Photo" width="100" height="100" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

@@ -3,9 +3,12 @@ using RecipeApp.Models;
 using RecipeApp.Models.ViewModels;
 using RecipeBLL.DTOS;
 using RecipeBLL.Repository.Category;
+using RecipeDAL.Context;
 using RecipeDAL.DAL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -18,14 +21,15 @@ namespace RecipeApp.Areas.Manage.Controllers
     public class CategoryController : Controller
     {
         private readonly IMapper _mapper;
-
+        private readonly RecipeContext _context;
 
         private readonly ICategoryRepository _repository;
 
-        public CategoryController(ICategoryRepository repository, IMapper mapper)
+        public CategoryController(ICategoryRepository repository, IMapper mapper, RecipeContext context)
         {
             _mapper = mapper;
             _repository = repository;
+            _context = context;
         }
         // GET: Manage/Category
         public ActionResult Index()
@@ -43,10 +47,13 @@ namespace RecipeApp.Areas.Manage.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(CategoryViewModel model)
+        public ActionResult Create(CategoryViewModel model, HttpPostedFileBase Photo)
         {
-
+            string fName = Photo.FileName;
+            string path = Path.Combine(Server.MapPath("~/Upload"), fName);
+            Photo.SaveAs(path);
             model.UserId = 2;
+            model.Photo = fName;
             var persondtos = _mapper.Map<RecipeBLL.DTOS.CategoryDTO>(model);
             //var categoryModel = _mapper.Map<Category>(persondtos);
             _repository.Create(persondtos, 2
@@ -57,30 +64,30 @@ namespace RecipeApp.Areas.Manage.Controllers
             string smtpUserName = "nigarmammadova4t@gmail.com";
             string smtpUserPass = "muhendis@@";
 
-            using (SmtpClient smtpSend = new SmtpClient())
-            {
-                smtpSend.Host = smtpServer;
-                smtpSend.Port = port;
+            //using (SmtpClient smtpSend = new SmtpClient())
+            //{
+            //    smtpSend.Host = smtpServer;
+            //    smtpSend.Port = port;
 
-                smtpSend.Credentials = new System.Net.NetworkCredential(smtpUserName, smtpUserPass);
+            //    smtpSend.Credentials = new System.Net.NetworkCredential(smtpUserName, smtpUserPass);
 
-                smtpSend.EnableSsl = true;
+            //    smtpSend.EnableSsl = true;
 
-                MailMessage emailMessage = new System.Net.Mail.MailMessage();
+            //    MailMessage emailMessage = new System.Net.Mail.MailMessage();
 
-                emailMessage.To.Add("nigar-4t@live.com");
-                emailMessage.From = new MailAddress("nigarmammadova4t@gmail.com");
-                emailMessage.Subject = "dffff";
-                emailMessage.Body = "fffffF";
+            //    emailMessage.To.Add("nigar-4t@live.com");
+            //    emailMessage.From = new MailAddress("nigarmammadova4t@gmail.com");
+            //    emailMessage.Subject = "dffff";
+            //    emailMessage.Body = "fffffF";
 
                 
 
-                smtpSend.Send(emailMessage);
-            }
+            //    smtpSend.Send(emailMessage);
+            //}
 
 
 
-            return View(model);
+            return RedirectToAction("Index");
         }
         public ActionResult Edit(int id)
         {
@@ -92,10 +99,27 @@ namespace RecipeApp.Areas.Manage.Controllers
             return View(viewModel);
         }
         [HttpPost]
-        public ActionResult Edit(CategoryViewModel model)
+        public ActionResult Edit(CategoryViewModel model, HttpPostedFileBase Photo)
         {
+            Category current = _context.Categories.Find(model.Id);
 
+            if (Photo != null)
+            {
+                string fName = DateTime.Now.ToString("yyMMddHHmmss") + Photo.FileName;
+                string path = Path.Combine(Server.MapPath("~/Upload"), fName);
+                Photo.SaveAs(path);
+                model.Photo = fName;
+                System.IO.File.Delete(Path.Combine(Server.MapPath("~/Upload"), current.Photo));
+                _context.Entry(current).State = EntityState.Detached;
+            }
             model.UserId = 2;
+            if (Photo == null)
+            {
+                var dto = _mapper.Map<CategoryDTO>(model);
+                var contextModel = _mapper.Map<Category>(dto);
+                //_context.Entry(contextModel).Property(p => p.Photo).IsModified = false;
+                model.Photo = current.Photo;
+            }
             var dtos = _mapper.Map<RecipeBLL.DTOS.CategoryDTO>(model);
             var categoryModel = _mapper.Map<Category>(dtos);
             _repository.Update(dtos, 2);

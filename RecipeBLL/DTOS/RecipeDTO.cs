@@ -28,6 +28,7 @@ namespace RecipeBLL.DTOS
         public int CategoryId { get; set; }
         public string Duration { get; set; }
         public virtual Category Category { get; set; }
+        public int EditedId { get; set; }
 
         public int UserId { get; set; }
 

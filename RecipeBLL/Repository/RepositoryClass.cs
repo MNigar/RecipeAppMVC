@@ -30,8 +30,9 @@ namespace RecipeBLL.Repository
             {
                 var model = _mapper.Map<TDao>(entity);
                 model.CreatedUserId = userId;
+                model.ModifiedUserId = userId;
                 model.CreatedDate = DateTime.Now;
-                model.ModifiedDate = null;
+                model.ModifiedDate = DateTime.Now;
                 using (var transaction = _dbContext.Database.BeginTransaction())
                 {
                     _dbContext.Set<TDao>().Add(model);
@@ -86,23 +87,10 @@ namespace RecipeBLL.Repository
             return dto;
         }
 
-        //public TEntity GetById(int id)
-        //{
-        //    return _dbContext.Set<TEntity>()
-        //        .AsNoTracking()
-        //        .FirstOrDefault(e => e.Id == id);
-        //}
-        //public IEnumerable<TEntity> Find(System.Linq.Expressions.Expression<System.Func<TEntity, bool>> predicate)
-        //{
-        //    return _dbContext.Set<TEntity>()
-        //        .AsNoTracking()
-        //        .Where(predicate).ToList();
-        //}
-        public void Update(/*int id,*/ TDto entity,int userId=0  )
+        
+        public void Update( TDto entity,int userId=0  )
         {
-            //var data = _dbContext.Entry(entity);
-            //data.State = System.Data.Entity.EntityState.Modified;
-            //_dbContext.SaveChanges();
+           
             try
             {
                 var model = _mapper.Map<TDao>(entity);

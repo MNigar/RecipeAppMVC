@@ -1,4 +1,6 @@
-﻿@{
+﻿@model RecipeApp.Models.RecipeViewModel
+
+@{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 <html>
@@ -40,7 +42,7 @@
                         </div>
 
                         <div class="metro_post-single-thumb">
-                            <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/recipe/1.jpg" alt="post">
+                            <img src="~/Upload/@Model.Photo" alt="post">
                             <div class="metro_post-date">
                                 <span>25</span>
                                 <span>Dec</span>
@@ -56,55 +58,30 @@
                             </span>
 
                             <p>
-                                Cras ultricies ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec sollicitudin molestie malesuada.
-                                Cras ultricies ligula sed magna dictum porta. Donec rutrum congue leo eget malesuada.
-                                Cras ultricies ligula sed magna dictum porta. Cras ultricies ligula sed magna dictum porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec sollicitudin molestie malesuada.
-                                Cras ultricies ligula sed magna dictum porta. Donec rutrum congue leo eget malesuada.
+                            @Model.Name
                             </p>
 
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="metro_nutritional-facts">
-                                        <h4>Nutrition</h4>
-                                        <ul>
-                                            <li> 1 Cup Sifted all purpose Flour </li>
-                                            <li> 4 Cups Dry-roasted macadamia nuts </li>
-                                            <li> 4 Large eggs </li>
-                                            <li> 5 Cup sifted all purpose flour </li>
-                                            <li> 8 Cups dry-roasted macadami nuts </li>
-                                            <li> 5 Mineral water </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                
                                 <div class="col-lg-6">
                                     <div class="metro_ingredients">
                                         <h4>Ingredients</h4>
                                         <ul>
-                                            <li> Calories <span>329</span> </li>
-                                            <li> Sugar <span>10.5g</span> </li>
-                                            <li> Protein <span>22.5g</span> </li>
-                                            <li> Fat <span>3g</span> </li>
-                                            <li> Carbs <span>18g</span> </li>
-                                            <li> Food Far <span>0.1</span> </li>
+                                            @foreach (var i in Model.Ingridients)
+                                            {
+
+                                                <li> @i.Name <span>@i.Quantity</span> </li>
+                                            }
+                                           
                                         </ul>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <img class="w-100" src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/recipe/2.jpg" alt="Recipe">
-                                </div>
-                                <div class="col-sm-6">
-                                    <img class="w-100" src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/recipe/3.jpg" alt="Recipe">
-                                </div>
-                            </div>
+
 
                             <p>
-                                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
-                                Ut enim ad minima veniam, quis nostruercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequat
+                              @Model.Description
                             </p>
                         </div>
                         <!-- Entry Content End -->
@@ -119,21 +96,25 @@
                         <div class="metro_related-posts-slider">
 
                             <!-- Recipe Start -->
-                            <article class="metro_post metro_recipe">
-                                <div class="metro_post-thumb">
-                                    <a href="recipe-details.html">
-                                        <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/recipes/1.jpg" alt="recipe">
-                                    </a>
-                                </div>
-                                <div class="metro_post-body">
-                                    <div class="metro_post-desc">
-                                        <span class="metro_post-meta"> <a href="#"> <i class="far fa-clock"></i> 45 Minutes </a> <a href="recipe-details.html"> <i class="far fa-knife-kitchen"></i> Expert</a> </span>
-                                        <h5> <a href="recipe-details.html">Cheese Burger With a Touch of Curry and Cumin</a> </h5>
-                                        <p>Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
+                            @foreach (var recipe in ViewBag.Recipes)
+                            {
+                                <article class="metro_post metro_recipe">
+                                    <div class="metro_post-thumb">
+                                        <a href="/Recipes/RecipeDetails/@recipe.Id">
+                                            <img src="~/Upload/@recipe.Photo" alt="recipe">
+                                        </a>
                                     </div>
-                                    <a class="btn-link" href="recipe-details.html"> Read More <i class="fas fa-arrow-right"></i> </a>
-                                </div>
-                            </article>
+                                    <div class="metro_post-body">
+                                        <div class="metro_post-desc">
+                                            <span class="metro_post-meta"> <a href="/Recipes/RecipeDetails/@recipe.Id"> <i class="far fa-clock"></i> 45 Minutes </a> <a href="recipe-details.html"> <i class="far fa-knife-kitchen"></i> Expert</a> </span>
+                                            <h5> <a href="/Recipes/RecipeDetails/@recipe.Id">@recipe.Name</a> </h5>
+                                            <p>@recipe.Description.Substring(0,3)</p>
+                                        </div>
+                                        <a class="btn-link" href="recipe-details.html"> Read More <i class="fas fa-arrow-right"></i> </a>
+                                    </div>
+                                </article>
+                            }
+
                             <!-- Recipe End -->
                             <!-- Recipe Start -->
                             <article class="metro_post metro_recipe">

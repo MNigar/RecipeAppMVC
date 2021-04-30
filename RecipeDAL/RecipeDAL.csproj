@@ -79,6 +79,10 @@
     <Compile Include="Migrations\202104290846174_added photo columns.designer.cs">
       <DependentUpon>202104290846174_added photo columns.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104300710239_added field.cs" />
+    <Compile Include="Migrations\202104300710239_added field.designer.cs">
+      <DependentUpon>202104300710239_added field.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -101,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104290846174_added photo columns.resx">
       <DependentUpon>202104290846174_added photo columns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104300710239_added field.resx">
+      <DependentUpon>202104300710239_added field.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

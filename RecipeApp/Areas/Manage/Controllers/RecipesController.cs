@@ -7,6 +7,7 @@ using RecipeDAL.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -38,24 +39,60 @@ namespace RecipeApp.Areas.Manage.Controllers
             var result = _mapper.Map<List<RecipeViewModel>>(data);
             return View(result);
         }
-        [HttpPost]
+
+
+
+
+
+
+        //[HttpGet]
+        //public ActionResult Submit(int id)
+        //{
+        //    return ()
+        //}
+
+        public ActionResult Details(int id)
+        {
+            var data=_repository.GetById(id);
+            
+            var result = _mapper.Map<RecipeViewModel>(data);
+            ViewBag.image = result.Photo;
+            return View(result);
+        }
+        //[HttpGet]
+        //public ActionResult Submit(int id)
+        //{
+           
+        //    var data = _repository.GetById(id);
+        //    if (data == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(data);
+        //}
+
+
+    
         public ActionResult Submit(int id)
         {
+
             var data = _repository.GetById(id);
             var result = _mapper.Map<RecipeViewModel>(data);
-            data.Status = 0;
+            data.Status = (int)Helper.Helpers.status.Active;
             _repository.Update(data,2);
-
+            var deleteddata = _repository.GetById(data.EditedId);
+            deleteddata.Status = (int)Helper.Helpers.status.Deactive;
+            _repository.Update(deleteddata, 2);
             return RedirectToAction("WaitingForSubmit");
         }
-        [HttpPost]
+     
         public ActionResult Cancel(int id)
         {
             var data = _repository.GetById(id);
-            var result = _mapper.Map<RecipeViewModel>(data);
-            data.Status = 3;
+            
+            data.Status = (int)Helper.Helpers.status.Deactive;
             _repository.Update(data, 2);
-
+            
             return RedirectToAction("WaitingForSubmit");
         }
     }

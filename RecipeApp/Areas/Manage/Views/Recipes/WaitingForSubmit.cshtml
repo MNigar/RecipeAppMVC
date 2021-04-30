@@ -37,6 +37,9 @@
 
 @foreach (var item in Model) {
     <tr>
+       
+            <input type="hidden" value="@item.Id" id="id"/>
+        
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
@@ -59,12 +62,14 @@
             @Html.DisplayFor(modelItem => item.Duration)
         </td>
         <td>
-            @Html.ActionLink("Submit", "Recipes", new { id=item.Id }) |
+            <a href="@Url.Action("Submit", "Recipes", new { id = item.Id })">
+                Link text
+            </a>|
             <div id="dontchange">
                 @*@Html.ActionLink("Cancel", "Recipes", new { id = item.Id }, new { htmlAttributes = new { @class = "form-control", @onclick ="myFun()" } })  |*@
-          <button onclick="myFun()">Cancel</button>
+          
             </div>
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                @Html.ActionLink("Details", "Details", new { id=item.Id })
         </td>
     </tr>
 }
@@ -101,15 +106,15 @@
         savebutton.setAttribute("Name", "reasonsave");
         savebutton.innerHTML = "Save";
         savebutton.setAttribute("class", "form-control");
-        savebutton.setAttribute("onclick","location.href='@Url.Action("Cancel", "Recipes", new { id = item.id })'")
 
         var button = document.getElementById("dontchange");
         div1.appendChild(name);
         div2.append(savebutton);
-                    button.appendChild(div1);
+                   
 
-                    button.appendChild(div2);
-
+        button.appendChild(div2);
+        var tr = div1.parentElement().parentElement();
+        var t = tr.getElementById("id").innerHTML;
             }
 
 

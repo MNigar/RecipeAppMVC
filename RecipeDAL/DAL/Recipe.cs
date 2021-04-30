@@ -34,7 +34,7 @@ namespace RecipeDAL.DAL
         [Required]
        
         public int CategoryId { get; set; }
-     
+        public int EditedId { get; set; }
         public virtual Category Category { get; set; }
         
         public int UserId { get; set; }

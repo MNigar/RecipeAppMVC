@@ -62,9 +62,20 @@ namespace RecipeApp.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult RecipeDetails()
+        public ActionResult RecipeDetails(int id)
         {
-            return View();
+
+
+            var data = _repository.GetById(id);
+
+            var result = _mapper.Map<RecipeViewModel>(data);
+            ViewBag.image = result.Photo;
+            var dataList = _repository.GetAll().Where(x=>x.Status==(int)Helpers.status.Active).Take(2);
+
+            var recipeList = _mapper.Map<List<RecipeViewModel>>(dataList);
+            ViewBag.Recipes = recipeList;
+            return View(result);
+            
         }
         [HttpGet]
         public ActionResult RecipeGrid()
@@ -164,8 +175,8 @@ namespace RecipeApp.Controllers
            
 
             var id = _recipeContext.Recipes.OrderByDescending(x => x.Id).FirstOrDefault();
-            var newid = id.Id + 1;
-            var t = (id != null) ? newid : 1;
+            
+            var t = (id != null) ? id.Id+1 : 1;
          
             RecipeIngridientViewModel model = new RecipeIngridientViewModel();
 
@@ -176,6 +187,7 @@ namespace RecipeApp.Controllers
             model.RecipeViewModel.Status = 0;
             model.RecipeViewModel.UserId = 2;
             model.RecipeViewModel.Id = t;
+            model.RecipeViewModel.EditedId = 0;
             model.RecipeViewModel.Name = Request.Form["name"];
             model.RecipeViewModel.Description = Request.Form["Description"];
             model.RecipeViewModel.CategoryId =Convert.ToInt32 (Request.Form["categoryId"]);

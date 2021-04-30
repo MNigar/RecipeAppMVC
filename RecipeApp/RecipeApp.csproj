@@ -2084,6 +2084,7 @@
     <Content Include="Areas\Manage\Views\Category\Index.cshtml" />
     <Content Include="Areas\Manage\Views\Category\Details.cshtml" />
     <Content Include="Areas\Manage\Views\Recipes\WaitingForSubmit.cshtml" />
+    <Content Include="Areas\Manage\Views\Recipes\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Public\backblue.gif" />
     <Content Include="Public\cookies.txt" />
@@ -2259,7 +2260,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Recipes\Index.cshtml" />
-    <Content Include="Views\Recipes\REcipe.cshtml" />
     <Content Include="Views\Recipes\Home.cshtml" />
     <Content Include="Views\Shared\_Layout1.cshtml" />
     <Content Include="Views\Recipes\Creates.cshtml" />
@@ -2278,6 +2278,7 @@
     <Content Include="Views\Recipes\Search.cshtml" />
     <Content Include="Views\Home\Profiles.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\Category\RecipeGrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

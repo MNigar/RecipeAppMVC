@@ -101,6 +101,9 @@ namespace RecipeApp.Controllers
                     }
                 }
             }
+            var findRecipe = _repository.GetById(mId);
+            var currentRec = _mapper.Map<Recipe>(findRecipe);
+            var photorecipe= _mapper.Map<RecipeViewModel>(findRecipe);
             if (Photo != null)
             {
 
@@ -108,16 +111,14 @@ namespace RecipeApp.Controllers
                 string path = Path.Combine(Server.MapPath("~/Upload"), fName);
                 Photo.SaveAs(path);
                 model.RecipeViewModel.Photo = fName;
-                 var findRecipe= _repository.GetById(mId);
-                var currentRec = _mapper.Map<Recipe>(findRecipe);
+                 
+               
                 Recipe currentRecipeModel = currentRec;
                 System.IO.File.Delete(Path.Combine(Server.MapPath("~/Upload"), currentRecipeModel.Photo));
                 _recipeContext.Entry(currentRecipeModel).State = EntityState.Detached;
 
             }
-            //var dtos = _mapper.Map<RecipeBLL.DTOS.RecipeDTO>(model);
-            ////var categoryModel = _mapper.Map<Recipe>(dtos);
-            //_repository.Update(dtos, 2);
+          
             var id = _recipeContext.Recipes.OrderByDescending(x => x.Id).FirstOrDefault();
             var newid = id.Id + 1;
             var t = (id != null) ? newid : 1;
@@ -127,8 +128,9 @@ namespace RecipeApp.Controllers
             model.RecipeViewModel.Name = Request.Form["name"];
             model.RecipeViewModel.Description = Request.Form["Description"];
             model.RecipeViewModel.CategoryId = Convert.ToInt32(Request.Form["categoryId"]);
-            model.RecipeViewModel.Photo = model.RecipeViewModel.Photo;
+            model.RecipeViewModel.Photo = photorecipe.Photo;
             model.RecipeViewModel.Duration = Request.Form["Duration"];
+            model.RecipeViewModel.EditedId = mId;
             var recipe = _mapper.Map<RecipeBLL.DTOS.RecipeDTO>(model.RecipeViewModel);
             _repository.Create(recipe, model.RecipeViewModel.UserId);
             model.IngridientViewModel = new IngridientList();
@@ -175,31 +177,31 @@ namespace RecipeApp.Controllers
                 _ingridientrepository.Create(ingridient, 0);
 
             }
-            int port = 587;
-            string smtpServer = "smtp.gmail.com";
-            string smtpUserName = "nigarmammadova4t@gmail.com";
-            string smtpUserPass = "kimsebilmez5@";
+            //int port = 587;
+            //string smtpServer = "smtp.gmail.com";
+            //string smtpUserName = "nigarmammadova4t@gmail.com";
+            //string smtpUserPass = "kimsebilmez5@";
 
-            using (SmtpClient smtpSend = new SmtpClient())
-            {
-                smtpSend.Host = smtpServer;
-                smtpSend.Port = port;
+            //using (SmtpClient smtpSend = new SmtpClient())
+            //{
+            //    smtpSend.Host = smtpServer;
+            //    smtpSend.Port = port;
 
-                smtpSend.Credentials = new System.Net.NetworkCredential(smtpUserName, smtpUserPass);
+            //    smtpSend.Credentials = new System.Net.NetworkCredential(smtpUserName, smtpUserPass);
 
-                smtpSend.EnableSsl = true;
+            //    smtpSend.EnableSsl = true;
 
-                MailMessage emailMessage = new System.Net.Mail.MailMessage();
+            //    MailMessage emailMessage = new System.Net.Mail.MailMessage();
 
-                emailMessage.To.Add("nigar-4t@live.com");
-                emailMessage.From = new MailAddress("nigarmammadova4t@gmail.com");
-                emailMessage.Subject = "deyisdisikliyin tesdiqi ucun admine gonderildi";
-                emailMessage.Body = "deyisdisikliyin tesdiqi ucun admine gonderildi";
+            //    emailMessage.To.Add("nigar-4t@live.com");
+            //    emailMessage.From = new MailAddress("nigarmammadova4t@gmail.com");
+            //    emailMessage.Subject = "deyisdisikliyin tesdiqi ucun admine gonderildi";
+            //    emailMessage.Body = "deyisdisikliyin tesdiqi ucun admine gonderildi";
 
 
 
-                smtpSend.Send(emailMessage);
-            }
+            //    smtpSend.Send(emailMessage);
+            //}
 
             return RedirectToAction("Profiles");
         }
