@@ -52,39 +52,14 @@ namespace RecipeApp.Areas.Manage.Controllers
             string fName = Photo.FileName;
             string path = Path.Combine(Server.MapPath("~/Upload"), fName);
             Photo.SaveAs(path);
-            model.UserId = 2;
+            model.UserId = (int)Session["userId"];
             model.Photo = fName;
             var persondtos = _mapper.Map<RecipeBLL.DTOS.CategoryDTO>(model);
             //var categoryModel = _mapper.Map<Category>(persondtos);
             _repository.Create(persondtos, 2
                 );
-            //"zafbvjohiihelqgn"
-                int port = 587;
-            string smtpServer = "smtp.gmail.com";
-            string smtpUserName = "nigarmammadova4t@gmail.com";
-            string smtpUserPass = "muhendis@@";
-
-            //using (SmtpClient smtpSend = new SmtpClient())
-            //{
-            //    smtpSend.Host = smtpServer;
-            //    smtpSend.Port = port;
-
-            //    smtpSend.Credentials = new System.Net.NetworkCredential(smtpUserName, smtpUserPass);
-
-            //    smtpSend.EnableSsl = true;
-
-            //    MailMessage emailMessage = new System.Net.Mail.MailMessage();
-
-            //    emailMessage.To.Add("nigar-4t@live.com");
-            //    emailMessage.From = new MailAddress("nigarmammadova4t@gmail.com");
-            //    emailMessage.Subject = "dffff";
-            //    emailMessage.Body = "fffffF";
-
-                
-
-            //    smtpSend.Send(emailMessage);
-            //}
-
+           
+              
 
 
             return RedirectToAction("Index");
@@ -112,7 +87,7 @@ namespace RecipeApp.Areas.Manage.Controllers
                 System.IO.File.Delete(Path.Combine(Server.MapPath("~/Upload"), current.Photo));
                 _context.Entry(current).State = EntityState.Detached;
             }
-            model.UserId = 2;
+            model.UserId = (int)Session["userId"];
             if (Photo == null)
             {
                 var dto = _mapper.Map<CategoryDTO>(model);

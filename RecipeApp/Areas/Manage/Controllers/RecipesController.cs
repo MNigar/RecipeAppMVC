@@ -3,6 +3,7 @@ using RecipeApp.Models;
 using RecipeBLL.Repository.Category;
 using RecipeBLL.Repository.Ingridient;
 using RecipeBLL.Repository.Recipe;
+using RecipeBLL.Repository.User;
 using RecipeDAL.Context;
 using System;
 using System.Collections.Generic;
@@ -18,15 +19,17 @@ namespace RecipeApp.Areas.Manage.Controllers
         private readonly IRecipeRepository _repository;
         private readonly ICategoryRepository _catrepository;
         private readonly IIngridientRepository _ingridientrepository;
+        private readonly IUserRepository _userRepository;
         private readonly RecipeContext _recipeContext;
         private readonly IMapper _mapper;
-        public RecipesController(IRecipeRepository repository, IMapper mapper, ICategoryRepository catrepository, IIngridientRepository ingridientrepository, RecipeContext recipeContext)
+        public RecipesController(IRecipeRepository repository, IMapper mapper, ICategoryRepository catrepository, IIngridientRepository ingridientrepository, RecipeContext recipeContext, IUserRepository userRepository)
         {
             _mapper = mapper;
             _repository = repository;
             _catrepository = catrepository;
             _ingridientrepository = ingridientrepository;
             _recipeContext = recipeContext;
+            _userRepository = userRepository;
         }
         // GET: Manage/Recipe
         public ActionResult Index()
@@ -35,7 +38,7 @@ namespace RecipeApp.Areas.Manage.Controllers
         }
         public ActionResult WaitingForSubmit()
         {
-            var data = _repository.GetAll().Where(x=>x.Status==(int)Helper.Helpers.status.Non);
+            var data = _repository.GetAll().Where(x=>x.Status==(int)Helper.Helpers.status.Non || x.Status==(int)Helper.Helpers.status.Waiting);
             var result = _mapper.Map<List<RecipeViewModel>>(data);
             return View(result);
         }
@@ -80,9 +83,14 @@ namespace RecipeApp.Areas.Manage.Controllers
             var result = _mapper.Map<RecipeViewModel>(data);
             data.Status = (int)Helper.Helpers.status.Active;
             _repository.Update(data,2);
+            
             var deleteddata = _repository.GetById(data.EditedId);
-            deleteddata.Status = (int)Helper.Helpers.status.Deactive;
-            _repository.Update(deleteddata, 2);
+            if (deleteddata != null)
+            {
+                deleteddata.Status = (int)Helper.Helpers.status.Deactive;
+                _repository.Update(deleteddata, 2);
+            }
+           
             return RedirectToAction("WaitingForSubmit");
         }
      
@@ -94,6 +102,12 @@ namespace RecipeApp.Areas.Manage.Controllers
             _repository.Update(data, 2);
             
             return RedirectToAction("WaitingForSubmit");
+        }
+        public ActionResult TopUser()
+        {
+           var result= _userRepository.GetAll().OrderByDescending(x => x.Recipes.Count()).Take(5);
+            var data = _mapper.Map<List<UserViewModel>>(result);
+            return View(data);
         }
     }
 }

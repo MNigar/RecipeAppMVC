@@ -34,3 +34,6 @@ D:\C#course\RecipeAppMVC\RecipeDAL\obj\Debug\RecipeDAL.csproj.CoreCompileInputs.
 D:\C#course\RecipeAppMVC\RecipeDAL\obj\Debug\RecipeDAL.csproj.CopyComplete
 D:\C#course\RecipeAppMVC\RecipeDAL\obj\Debug\RecipeDAL.dll
 D:\C#course\RecipeAppMVC\RecipeDAL\obj\Debug\RecipeDAL.pdb
+D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.Migrations.addedfield.resources
+D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.Migrations.updatedcolumns.resources
+D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.Migrations.updatedcolumnss.resources

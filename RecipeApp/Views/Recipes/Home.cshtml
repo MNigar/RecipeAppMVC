@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<RecipeApp.Models.CategoryViewModel>
+@{
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 <html>
@@ -61,19 +62,23 @@
     <div class="section section-padding">
         <div class="container">
             <div class="row">
-                <div class="col-lg-7">
+                @*<div class="col-lg-7">
                     <a href="recipe-grid.html" class="metro_recipe-category style-2">
                         <img src="~/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/categories/lg/1.jpg" alt="category">
                         <h4>Pizza</h4>
                     </a>
-                </div>
-                <div class="col-lg-5">
-                    <a href="recipe-grid.html" class="metro_recipe-category style-2">
-                        <img src="~/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/categories/lg/2.jpg" alt="category">
-                        <h4>Burger</h4>
-                    </a>
-                </div>
-                <div class="col-lg-5">
+                </div>*@
+                @foreach (var i in Model)
+                {
+                    <div class="col-lg-6">
+                        <a href="/Category/Recipegrid/@i.Id" class="metro_recipe-category style-2">
+                            <img src="~/Upload/@i.Photo" alt="category">
+                            <h4>@i.Name</h4>
+                        </a>
+                    </div>
+                }
+
+                @*<div class="col-lg-5">
                     <a href="recipe-grid.html" class="metro_recipe-category style-2">
                         <img src="~/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/categories/lg/3.jpg" alt="category">
                         <h4>Chicken</h4>
@@ -84,7 +89,7 @@
                         <img src="~/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/categories/lg/4.jpg" alt="category">
                         <h4>Soup</h4>
                     </a>
-                </div>
+                </div>*@
             </div>
         </div>
     </div>

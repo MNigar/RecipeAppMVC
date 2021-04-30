@@ -23,7 +23,7 @@ namespace RecipeDAL.DAL
         public virtual HashSet<Ingridient> Ingridients { get; set; }
 
         [Required]
-        [MaxLength(500)]
+        [MaxLength(1000)]
 
         public string Description { get; set; }
         public string Photo { get; set; }

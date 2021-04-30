@@ -140,6 +140,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
+    <Compile Include="Filter\AuthForAdmin.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -147,6 +148,7 @@
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\IngridientViewModel.cs" />
     <Compile Include="Models\RecipeViewModel.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\ViewModels\IngridientList.cs" />
     <Compile Include="Models\ViewModels\Mail.cs" />
     <Compile Include="Models\ViewModels\RecipeIngridientViewModel.cs" />
@@ -2085,6 +2087,7 @@
     <Content Include="Areas\Manage\Views\Category\Details.cshtml" />
     <Content Include="Areas\Manage\Views\Recipes\WaitingForSubmit.cshtml" />
     <Content Include="Areas\Manage\Views\Recipes\Details.cshtml" />
+    <Content Include="Areas\Manage\Views\Recipes\TopUser.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Public\backblue.gif" />
     <Content Include="Public\cookies.txt" />
@@ -2248,6 +2251,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Validator.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2259,7 +2263,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Recipes\Index.cshtml" />
     <Content Include="Views\Recipes\Home.cshtml" />
     <Content Include="Views\Shared\_Layout1.cshtml" />
     <Content Include="Views\Recipes\Creates.cshtml" />
@@ -2274,11 +2277,11 @@
     <Content Include="Views\Home\RecipeGrid.cshtml" />
     <Content Include="Views\Home\RecipeDetails.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Recipes\Create.cshtml" />
     <Content Include="Views\Recipes\Search.cshtml" />
     <Content Include="Views\Home\Profiles.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Category\RecipeGrid.cshtml" />
+    <Content Include="Views\Recipes\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

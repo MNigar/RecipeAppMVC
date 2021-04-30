@@ -83,6 +83,14 @@
     <Compile Include="Migrations\202104300710239_added field.designer.cs">
       <DependentUpon>202104300710239_added field.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104301450553_updated columns.cs" />
+    <Compile Include="Migrations\202104301450553_updated columns.designer.cs">
+      <DependentUpon>202104301450553_updated columns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104301500270_updated columnss.cs" />
+    <Compile Include="Migrations\202104301500270_updated columnss.designer.cs">
+      <DependentUpon>202104301500270_updated columnss.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -108,6 +116,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104300710239_added field.resx">
       <DependentUpon>202104300710239_added field.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104301450553_updated columns.resx">
+      <DependentUpon>202104301450553_updated columns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104301500270_updated columnss.resx">
+      <DependentUpon>202104301500270_updated columnss.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

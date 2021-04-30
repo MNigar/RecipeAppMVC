@@ -6,6 +6,7 @@ using RecipeBLL.DTOS;
 using RecipeBLL.Repository.Category;
 using RecipeBLL.Repository.Ingridient;
 using RecipeBLL.Repository.Recipe;
+using RecipeBLL.Repository.User;
 using RecipeDAL.DAL;
 using System.Web.Mvc;
 using Unity;
@@ -28,6 +29,7 @@ namespace RecipeApp
             container.RegisterType<IIngridientRepository, RecipeBLL.Repository.Ingridient.IngridientRepository>();
 
             container.RegisterType<ICategoryRepository, RecipeBLL.Repository.Category.CategoryRepository>();
+            container.RegisterType<IUserRepository, RecipeBLL.Repository.User.UserRepository>();
             var config = new MapperConfiguration(cfg =>
             {
                 //Create all maps here
@@ -43,7 +45,10 @@ namespace RecipeApp
                 cfg.CreateMap<IngridientDTO, Ingridient>();
                 cfg.CreateMap< IngridientList,IngridinetListDTO>();
                 cfg.CreateMap<Ingridient, IngridientDTO>();
-
+                cfg.CreateMap<UserViewModel, UserDTO>();
+                cfg.CreateMap<UserDTO, User>();
+                cfg.CreateMap<User, UserDTO>();
+                cfg.CreateMap<UserDTO, UserViewModel>();
                 //...
             });
             IMapper mapper = config.CreateMapper();

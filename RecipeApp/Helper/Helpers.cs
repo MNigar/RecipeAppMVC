@@ -11,7 +11,8 @@ namespace RecipeApp.Helper
         {
             Active=0,
             Non=1,
-            Deactive=2
+            Deactive=2,
+            Waiting=3
             
         }
     }

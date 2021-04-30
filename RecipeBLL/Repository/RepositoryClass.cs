@@ -9,6 +9,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace RecipeBLL.Repository
 {
@@ -29,8 +30,8 @@ namespace RecipeBLL.Repository
             try
             {
                 var model = _mapper.Map<TDao>(entity);
-                model.CreatedUserId = userId;
-                model.ModifiedUserId = userId;
+                model.CreatedUserId = (HttpContext.Current.Session["userId"]==null)?userId: (int)HttpContext.Current.Session["userId"];
+                model.ModifiedUserId = (HttpContext.Current.Session["userId"] == null)?userId: (int)HttpContext.Current.Session["userId"];
                 model.CreatedDate = DateTime.Now;
                 model.ModifiedDate = DateTime.Now;
                 using (var transaction = _dbContext.Database.BeginTransaction())
@@ -53,7 +54,7 @@ namespace RecipeBLL.Repository
             //_dbContext.Set<TEntity>().Remove(entity);
             //_dbContext.SaveChanges();
             try
-            {
+            {   
                 var dao = _dbContext.Set<TDao>().FirstOrDefault(e => e.Id == id);
                 _dbContext.Entry(dao).State = EntityState.Deleted;
                 var result = _dbContext.SaveChanges();
@@ -98,7 +99,7 @@ namespace RecipeBLL.Repository
                 using (var transaction = _dbContext.Database.BeginTransaction())
                 {
                     var dbModel = _dbContext.Set<TDao>().FirstOrDefault(x => x.Id == model.Id);
-                    dbModel.ModifiedUserId = userId;
+                    dbModel.ModifiedUserId = (int)HttpContext.Current.Session["userId"]; ;
                     dbModel.ModifiedDate = DateTime.Now;
                     var entry = _dbContext.Entry(dbModel);
                     entry.CurrentValues.SetValues(entity);
@@ -106,7 +107,7 @@ namespace RecipeBLL.Repository
                     entry.Property(x => x.CreatedUserId).IsModified = false;
                     _dbContext.SaveChanges();
                     transaction.Commit();
-                  
+                    
              
                 }
 

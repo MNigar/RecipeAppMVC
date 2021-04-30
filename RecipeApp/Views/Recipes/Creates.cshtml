@@ -29,11 +29,12 @@
             <div class="row">
                 <div class="col-lg-8">
                     <form method="post" action="@Url.Action("Creates", "Recipes")" enctype="multipart/form-data">
-                        
+
                         <div class="metro_recipe-submit-section">
                             <div class="form-group">
                                 <label>Recipe Name</label>
-                                <input type="text" class="form-control" name="name" placeholder="Recipe Name">
+                                <input type="text" class="form-control" name="name" placeholder="Recipe Name" required >
+                                @Html.ValidationMessageFor(model => model.RecipeViewModel.Name, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group">
                                 <label>Select Category</label>
@@ -42,16 +43,16 @@
                                     {
                                         <option value="@cat.Id">@cat.Name</option>
                                     }
-                                    @*<option value="breakfast">Breakfast</option>
-                <option value="burgers">Burgers</option>
-                <option value="Pizza">Pizza</option>
-                <option value="Lunch">Lunch</option>*@
+
 
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Recipe Description</label>
-                                <textarea name="Description" rows="8" class="form-control" placeholder="Write Description"></textarea>
+                                <label>Recipe Description(min(3)-max(1000))</label>
+
+                                <textarea name="Description" rows="8" class="form-control" placeholder="Write Description" required></textarea>
+                                @Html.ValidationMessageFor(model => model.RecipeViewModel.Description, "", new { @class = "text-danger" })
+
                             </div>
                             <div class="form-group">
                                 <label>Duration</label>
@@ -60,25 +61,7 @@
                         </div>
 
 
-                        @*<div class="metro_recipe-submit-section">
-            <div class="row">
-                <div class="col-12">
-                    <label>Additional Information</label>
-                </div>
-                <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="recipe-prep-time" value="" placeholder="Prep Time">
-                </div>
-                <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="recipe-cook-time" value="" placeholder="Cook Time">
-                </div>
-                <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="recipe-serving" value="" placeholder="Servings">
-                </div>
-                <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="recipe-difficulty" value="" placeholder="Difficulty">
-                </div>
-            </div>
-        </div>*@
+
 
                         <div class="metro_recipe-submit-section">
                             <div class="row" id="ingridient">
@@ -89,50 +72,24 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6" id="ingname">
-                                    <input type="text" class="form-control" name="IngridientName" value="" placeholder="Name" >
+                                    <input type="text" class="form-control" name="IngridientName" value="" placeholder="Name" required>
                                 </div>
                                 <div class="form-group col-md-6" id="ingquantity">
-                                    <input type="text" class="form-control" name="IngridientQuantity" value="" placeholder="Count/Amount etc." >
+                                    <input type="text" class="form-control" name="IngridientQuantity" value="" placeholder="Count/Amount etc." required>
                                 </div>
-                                @*<div class="form-group col-md-6">
-                                    <input type="text" class="form-control" name="IngridientName" value="" placeholder="Name">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" name="IngridientQuantity" value="" placeholder="Count/Amount etc.">
-                                </div>*@
+
 
 
                             </div>
                         </div>
 
-                        @*<div class="metro_recipe-submit-section">
-            <div class="row">
-                <div class="col-12">
-                    <label>Nutrition Facts</label>
-                </div>
-                <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="recipe-prep-time" value="" placeholder="Prep Time">
-                </div>
-                <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="recipe-cook-time" value="" placeholder="Cook Time">
-                </div>
-                <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="recipe-serving" value="" placeholder="Servings">
-                </div>
-                <div class="form-group col-md-6">
-                    <input type="text" class="form-control" name="recipe-difficulty" value="" placeholder="Difficulty">
-                </div>
-                <div class="form-group col-12">
-                    <button type="button" class="metro_btn-custom secondary" name="button">Add Nutrition Facts</button>
-                </div>
-            </div>
-        </div>*@
+
                         <div class="metro_recipe-submit-section p-0 border-0">
                             <div class="form-group">
                                 <label>Upload Recipe Photos</label>
                                 <div class="metro_input-upload">
-                                    <button type="button" class="metro_btn-custom secondary" name="button">Upload Photos</button>
-                                    <input type="file" name="Photo" >
+                                    <button type="button" class="metro_btn-custom secondary" name="button" required>Upload Photos</button>
+                                    <input type="file" name="Photo">
                                 </div>
                             </div>
                         </div>
@@ -140,7 +97,11 @@
                         <div class="text-right">
                             <button type="submit" class="mt-4 metro_btn-custom" name="button">Submit Recipe</button>
                         </div>
-
+                        <div class="text-right">
+                            <label>
+                                Your recipe will be cheked by chiefs
+                            </label>
+                        </div>
                     </form>
                 </div>
 
@@ -287,9 +248,9 @@
                     var div1 = document.createElement("div");
 
                     div1.setAttribute("class", "form-group col-md-6");
-        div1.setAttribute("id", "ingname");
+                       div1.setAttribute("id", "ingname");
                     var div2 = document.createElement("div");
-        div2.setAttribute("id", "ingquantity");
+                    div2.setAttribute("id", "ingquantity");
 
                     div2.setAttribute("class", "form-group col-md-6");
 
@@ -299,7 +260,8 @@
                     name.setAttribute("Name", "IngridientName");
                     name.innerHTML = "Name";
                     name.setAttribute("class", "form-control");
-                    name.setAttribute("placeholder", "Name")
+                     name.setAttribute("placeholder", "Name");
+       
                     var quantity = document.createElement("INPUT");
                     quantity.setAttribute("type", "text");
                     quantity.setAttribute("id", "file1");

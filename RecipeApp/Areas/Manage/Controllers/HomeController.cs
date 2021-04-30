@@ -11,7 +11,23 @@ namespace RecipeApp.Areas.Manage.Controllers
         // GET: Manage/Home
         public ActionResult Index()
         {
-            return View();
+            if (Session["username"] != null)
+            {
+                if (Session["username"].ToString() == "admin")
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Admin", new { area = "" });
+
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin", new { area = "" });
+            }
+           
         }
     }
 }

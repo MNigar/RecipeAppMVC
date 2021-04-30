@@ -44,8 +44,8 @@
                         <div class="metro_post-single-thumb">
                             <img src="~/Upload/@Model.Photo" alt="post">
                             <div class="metro_post-date">
-                                <span>25</span>
-                                <span>Dec</span>
+                                <span>@ViewBag.day</span>
+                                <span>@ViewBag.Month</span>
                             </div>
                         </div>
 
@@ -115,121 +115,17 @@
                                 </article>
                             }
 
-                            <!-- Recipe End -->
-                            <!-- Recipe Start -->
-                            <article class="metro_post metro_recipe">
-                                <div class="metro_post-thumb">
-                                    <a href="recipe-details.html">
-                                        <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/recipes/2.jpg" alt="recipe">
-                                    </a>
-                                </div>
-                                <div class="metro_post-body">
-                                    <div class="metro_post-desc">
-                                        <span class="metro_post-meta"> <a href="#"> <i class="far fa-clock"></i> 45 Minutes </a> <a href="recipe-details.html"> <i class="far fa-knife-kitchen"></i> Expert</a> </span>
-                                        <h5> <a href="recipe-details.html">Cheese Burger With a Touch of Curry and Cumin</a> </h5>
-                                        <p>Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
-                                    </div>
-                                    <a class="btn-link" href="recipe-details.html"> Read More <i class="fas fa-arrow-right"></i> </a>
-                                </div>
-                            </article>
-                            <!-- Recipe End -->
-                            <!-- Recipe Start -->
-                            <article class="metro_post metro_recipe">
-                                <div class="metro_post-thumb">
-                                    <a href="recipe-details.html">
-                                        <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/recipes/3.jpg" alt="recipe">
-                                    </a>
-                                </div>
-                                <div class="metro_post-body">
-                                    <div class="metro_post-desc">
-                                        <span class="metro_post-meta"> <a href="#"> <i class="far fa-clock"></i> 45 Minutes </a> <a href="recipe-details.html"> <i class="far fa-knife-kitchen"></i> Expert</a> </span>
-                                        <h5> <a href="recipe-details.html">Cheese Burger With a Touch of Curry and Cumin</a> </h5>
-                                        <p>Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
-                                    </div>
-                                    <a class="btn-link" href="recipe-details.html"> Read More <i class="fas fa-arrow-right"></i> </a>
-                                </div>
-                            </article>
-                            <!-- Recipe End -->
-                            <!-- Recipe Start -->
-                            <article class="metro_post metro_recipe">
-                                <div class="metro_post-thumb">
-                                    <a href="recipe-details.html">
-                                        <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/recipes/4.jpg" alt="recipe">
-                                    </a>
-                                </div>
-                                <div class="metro_post-body">
-                                    <div class="metro_post-desc">
-                                        <span class="metro_post-meta"> <a href="#"> <i class="far fa-clock"></i> 45 Minutes </a> <a href="recipe-details.html"> <i class="far fa-knife-kitchen"></i> Expert</a> </span>
-                                        <h5> <a href="recipe-details.html">Cheese Burger With a Touch of Curry and Cumin</a> </h5>
-                                        <p>Cras ultricies ligula sed magna dictum porta. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
-                                    </div>
-                                    <a class="btn-link" href="recipe-details.html"> Read More <i class="fas fa-arrow-right"></i> </a>
-                                </div>
-                            </article>
-                            <!-- Recipe End -->
-
+                           
+                           
+                         
                         </div>
 
                     </div>
 
                     <!-- Comments Form -->
-                    <div class="metro_comments-list">
-                        <h4>Our Comments</h4>
-                        <ul>
-                            <li class="comment-item">
-                                <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/people/1.png" alt="comment author">
-                                <div class="comment-body">
-                                    <h5>Francine</h5>
-                                    <span>January 13 2020</span>
-                                    <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
-                                    <a href="#" class="btn-link"> Reply <i class="fas fa-arrow-right"></i> </a>
-                                </div>
-                                <ul>
-                                    <li class="comment-item">
-                                        <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/people/3.png" alt="comment author">
-                                        <div class="comment-body">
-                                            <h5>John</h5>
-                                            <span>January 13 2020</span>
-                                            <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
-                                            <a href="#" class="btn-link"> Reply <i class="fas fa-arrow-right"></i> </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="comment-item">
-                                <img src="/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/people/2.png" alt="comment author">
-                                <div class="comment-body">
-                                    <h5>Mich</h5>
-                                    <span>January 13 2020</span>
-                                    <p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches</p>
-                                    <a href="#" class="btn-link"> Reply <i class="fas fa-arrow-right"></i> </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                    
 
-                    <!-- Comments -->
-                    <div class="metro_comments-form">
-
-                        <h4>Leave a Comment</h4>
-
-                        <form method="post">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Full Name" name="fname" value="">
-                                <i class="far fa-user"></i>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email Address" name="email" value="">
-                                <i class="far fa-user"></i>
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" placeholder="Type your comment..." name="comment" rows="7"></textarea>
-                                <i class="far fa-envelope"></i>
-                            </div>
-
-                            <button type="submit" class="metro_btn-custom primary" name="button">Send Comment</button>
-                        </form>
-                    </div>
+                   
 
                 </div>
 

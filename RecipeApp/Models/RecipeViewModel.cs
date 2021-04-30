@@ -19,8 +19,8 @@ namespace RecipeApp.Models
         public virtual HashSet<Ingridient> Ingridients { get; set; }
 
         [Required]
-        [MaxLength(500)]
-
+        [MaxLength(1000)]
+        [MinLength(15)]
         public string Description { get; set; }
         public int EditedId { get; set; }
 
