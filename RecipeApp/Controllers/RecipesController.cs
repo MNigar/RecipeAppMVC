@@ -401,7 +401,7 @@ namespace RecipeApp.Controllers
             }
 
 
-            return RedirectToAction("Profiles");
+            return RedirectToAction("Profiles","Home");
         }
         public ActionResult Details(int id)
         {
@@ -415,7 +415,7 @@ namespace RecipeApp.Controllers
             result.Status = (int)Helper.Helpers.status.Deactive;
             _repository.Update(result, Convert.ToInt32(Session["userId"]));
 
-            return RedirectToAction("Profile");
+            return RedirectToAction("Profiles","Home");
         }
         public ActionResult Home()
         {
