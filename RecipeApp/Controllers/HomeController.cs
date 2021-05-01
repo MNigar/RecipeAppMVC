@@ -54,7 +54,7 @@ namespace RecipeApp.Controllers
                 return RedirectToAction("Login", "Home");
             }
             var data = _repository.GetAll().Where(x=> x.CreatedUserId==(int)Session["userId"]);
-            var result = _repository.GetAll().Where(x => x.Status == (int)Helpers.status.Active || x.Status == (int)Helpers.status.Waiting);
+            var result = _repository.GetAll().Where(x => x.Status == (int)Helpers.status.Active );
 
             var recipeviewmodel = _mapper.Map<List<RecipeViewModel>>(data);
 
@@ -103,7 +103,7 @@ namespace RecipeApp.Controllers
             Session["email"] = null;
             Session["userId"] = null;
             Session["username"] = null;
-            return RedirectToAction("Login", "Users");
+            return RedirectToAction("Login");
         }
         public ActionResult Login()
         {

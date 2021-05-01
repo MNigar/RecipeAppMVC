@@ -45,8 +45,7 @@ namespace RecipeApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(UserViewModel user)
         {
-            if (ModelState.IsValid)
-            {
+           
                 var check = _recipeContext.Users.Where(u => u.Email == user.Email).FirstOrDefault();
                 if (check != null)
                 {
@@ -68,15 +67,7 @@ namespace RecipeApp.Controllers
 
                     }
 
-                }
-                else
-                {
-                    Session["LoginError"] = true;
-
-
-                    //ViewBag.Error = "Yoxdur";
-                    return View("Login");
-                }
+                
             }
             return View();
         }
