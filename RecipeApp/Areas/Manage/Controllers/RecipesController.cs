@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using RecipeApp.Helper;
 using RecipeApp.Models;
 using RecipeBLL.Repository.Category;
 using RecipeBLL.Repository.Ingridient;
@@ -9,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -90,7 +92,7 @@ namespace RecipeApp.Areas.Manage.Controllers
                 deleteddata.Status = (int)Helper.Helpers.status.Deactive;
                 _repository.Update(deleteddata, 2);
             }
-           
+            Email.SendEmail(Session["email"].ToString(), Session["username"].ToString(), "reseptiniz qəbul edildi", result.Name);
             return RedirectToAction("WaitingForSubmit");
         }
      
@@ -100,14 +102,15 @@ namespace RecipeApp.Areas.Manage.Controllers
             
             data.Status = (int)Helper.Helpers.status.Deactive;
             _repository.Update(data, 2);
-            
+            Email.SendEmail(Session["email"].ToString(), Session["username"].ToString(), "reseptiniz qəbul edilmədi", data.Name);
             return RedirectToAction("WaitingForSubmit");
         }
         public ActionResult TopUser()
         {
-           var result= _userRepository.GetAll().OrderByDescending(x => x.Recipes.Count()).Take(5);
+            var result= _userRepository.GetAll().OrderByDescending(x => x.Recipes.Count()).Take(5);
             var data = _mapper.Map<List<UserViewModel>>(result);
             return View(data);
         }
+        
     }
 }

@@ -541,19 +541,6 @@
                         </div>
                         <!-- Sidebar CTA End -->
                         <!-- About author Start -->
-                        <div class="sidebar-widget widget-about-author">
-                            <div class="widget-about-author-inner">
-                                <img src="~/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/authors/1.jpg" alt="author">
-                                <h5>Micheal</h5>
-                                <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Donec sollicitudin molestie malesuada. Mauris blandit aliquet elit</p>
-                            </div>
-                            <ul class="metro_sm">
-                                <li> <a href="#"> <i class="fab fa-facebook-f"></i> </a> </li>
-                                <li> <a href="#"> <i class="fab fa-twitter"></i> </a> </li>
-                                <li> <a href="#"> <i class="fab fa-linkedin-in"></i> </a> </li>
-                                <li> <a href="#"> <i class="fab fa-youtube"></i> </a> </li>
-                            </ul>
-                        </div>
                         <!-- about Author End -->
                         <!-- Recent Posts Start -->
                         <div class="sidebar-widget widget-recent-posts">
@@ -589,19 +576,9 @@
                         </div>
                         <!-- Recent Posts End -->
                         <!-- Categories Start -->
-                        <div class="sidebar-widget">
-                            <h5 class="widget-title"> Post Categories </h5>
-                            <ul class="sidebar-widget-list">
-                                <li> <a href="#"> Vegan </a> </li>
-                                <li> <a href="#"> Breakfast </a> </li>
-                                <li> <a href="#"> Pizza </a> </li>
-                                <li> <a href="#"> Salads</a> </li>
-                                <li> <a href="#"> Drinks  </a> </li>
-                                <li> <a href="#"> Bread </a> </li>
-                                <li> <a href="#"> Lunch </a> </li>
-                                <li> <a href="#"> Dinner </a> </li>
-                            </ul>
-                        </div>
+                        @Html.Partial("~/Views/Partial/CategoryList.cshtml")
+                     
+
                         <!-- Categories End -->
                         <!-- Testimonials Start -->
                         <div class="sidebar-widget">

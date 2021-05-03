@@ -5,6 +5,7 @@ using RecipeApp.Models.ViewModels;
 using RecipeBLL.DTOS;
 using RecipeBLL.Repository.Category;
 using RecipeBLL.Repository.Ingridient;
+using RecipeBLL.Repository.Logo;
 using RecipeBLL.Repository.Recipe;
 using RecipeBLL.Repository.User;
 using RecipeDAL.DAL;
@@ -30,6 +31,7 @@ namespace RecipeApp
 
             container.RegisterType<ICategoryRepository, RecipeBLL.Repository.Category.CategoryRepository>();
             container.RegisterType<IUserRepository, RecipeBLL.Repository.User.UserRepository>();
+            container.RegisterType<ILogoRepository, LogoRepository>();
             var config = new MapperConfiguration(cfg =>
             {
                 //Create all maps here
@@ -49,6 +51,11 @@ namespace RecipeApp
                 cfg.CreateMap<UserDTO, User>();
                 cfg.CreateMap<User, UserDTO>();
                 cfg.CreateMap<UserDTO, UserViewModel>();
+                cfg.CreateMap<LogoViewModel, LogoDTO>();
+                cfg.CreateMap<LogoDTO, Logo>();
+                cfg.CreateMap<Logo, LogoDTO>();
+                cfg.CreateMap<LogoDTO, LogoViewModel>();
+                
                 //...
             });
             IMapper mapper = config.CreateMapper();

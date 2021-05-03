@@ -17,6 +17,7 @@ namespace RecipeDAL.Context
         public virtual DbSet<Ingridient> Ingridients { get; set; }
 
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Logo> Logos { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

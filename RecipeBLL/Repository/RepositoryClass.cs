@@ -29,7 +29,12 @@ namespace RecipeBLL.Repository
         {
             try
             {
+
+                var lastId = _dbContext.Set<TDao>().OrderByDescending(x => x.Id).FirstOrDefault();
+
+                var newId = (lastId != null) ? lastId.Id + 1 : 1;
                 var model = _mapper.Map<TDao>(entity);
+                model.Id = newId;
                 model.CreatedUserId = (HttpContext.Current.Session["userId"]==null)?userId: (int)HttpContext.Current.Session["userId"];
                 model.ModifiedUserId = (HttpContext.Current.Session["userId"] == null)?userId: (int)HttpContext.Current.Session["userId"];
                 model.CreatedDate = DateTime.Now;

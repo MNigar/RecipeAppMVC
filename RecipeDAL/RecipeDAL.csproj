@@ -57,6 +57,7 @@
     <Compile Include="DAL\Category.cs" />
     <Compile Include="DAL\IEntity.cs" />
     <Compile Include="DAL\Ingridient.cs" />
+    <Compile Include="DAL\Logo.cs" />
     <Compile Include="DAL\Recipe.cs" />
     <Compile Include="DAL\User.cs" />
     <Compile Include="Migrations\202104260636568_added table.cs" />
@@ -91,6 +92,10 @@
     <Compile Include="Migrations\202104301500270_updated columnss.designer.cs">
       <DependentUpon>202104301500270_updated columnss.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105030719501_Added logo table.cs" />
+    <Compile Include="Migrations\202105030719501_Added logo table.designer.cs">
+      <DependentUpon>202105030719501_Added logo table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -122,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104301500270_updated columnss.resx">
       <DependentUpon>202104301500270_updated columnss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105030719501_Added logo table.resx">
+      <DependentUpon>202105030719501_Added logo table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

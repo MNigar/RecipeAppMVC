@@ -15,6 +15,7 @@ using RecipeApp.Models.ViewModels;
 using RecipeBLL.DTOS;
 using RecipeBLL.Repository.Category;
 using RecipeBLL.Repository.Ingridient;
+using RecipeBLL.Repository.Logo;
 using RecipeBLL.Repository.Recipe;
 using RecipeDAL.Context;
 using RecipeDAL.DAL;
@@ -32,13 +33,16 @@ namespace RecipeApp.Controllers
         private readonly ICategoryRepository _catrepository;
         private readonly IIngridientRepository _ingridientrepository;
         private readonly RecipeContext _recipeContext;
-        public RecipesController(IRecipeRepository repository ,IMapper mapper, ICategoryRepository catrepository, IIngridientRepository ingridientrepository, RecipeContext recipeContext)
+        private readonly ILogoRepository _logoRepository;
+        public RecipesController(IRecipeRepository repository ,IMapper mapper, ICategoryRepository catrepository,
+            IIngridientRepository ingridientrepository, RecipeContext recipeContext, ILogoRepository logoRepository)
         {
             _mapper = mapper;
             _repository = repository;
             _catrepository = catrepository;
             _ingridientrepository = ingridientrepository;
             _recipeContext = recipeContext;
+            _logoRepository = logoRepository;
         }
         // GET: Recipes
         [HttpGet]
@@ -136,9 +140,7 @@ namespace RecipeApp.Controllers
         [HttpPost]
         public ActionResult Creates(FormCollection form, HttpPostedFileBase Photo)
         {
-            
-           
-            
+                        
             var forms = new Dictionary<string, string>();
             List<IngridientViewModel> newlist = new List<IngridientViewModel>();
             List<string> arrList = new List<string>();
@@ -167,11 +169,7 @@ namespace RecipeApp.Controllers
                 }
             }
            
-
-            var id = _recipeContext.Recipes.OrderByDescending(x => x.Id).FirstOrDefault();
-            
-            var t = (id != null) ? id.Id+1 : 1;
-         
+                     
             RecipeIngridientViewModel model = new RecipeIngridientViewModel();
 
             model.RecipeViewModel = new RecipeViewModel();
@@ -181,7 +179,6 @@ namespace RecipeApp.Controllers
             Photo.SaveAs(path);
             model.RecipeViewModel.Status =(int) Helpers.status.Waiting;
             model.RecipeViewModel.UserId = (int)Session["userId"];
-            model.RecipeViewModel.Id = t;
             model.RecipeViewModel.EditedId = 0;
             model.RecipeViewModel.Name = Request.Form["name"];
             model.RecipeViewModel.Description = Request.Form["Description"];
@@ -220,32 +217,8 @@ namespace RecipeApp.Controllers
                 _ingridientrepository.Create(ingridient, 0);
 
             }
-            int port = 587;
-            string smtpServer = "smtp.gmail.com";
-            string smtpUserName = "tricklyrecipeapp@gmail.com";
-            string smtpUserPass = "bilmirem@";
-
-            using (SmtpClient smtpSend = new SmtpClient())
-            {
-                smtpSend.Host = smtpServer;
-                smtpSend.Port = port;
-
-                smtpSend.Credentials = new System.Net.NetworkCredential(smtpUserName, smtpUserPass);
-
-                smtpSend.EnableSsl = true;
-
-                MailMessage emailMessage = new System.Net.Mail.MailMessage();
-
-                emailMessage.To.Add(Session["email"].ToString());
-                emailMessage.From = new MailAddress("tricklyrecipeapp@gmail.com");
-                emailMessage.Subject = "Hormetli"+" "+Session["username"]+model.RecipeViewModel.Name+"reseptiniz admin terefinden qiymetlendirirlecek";
-                emailMessage.Body = "Hormetli" + " " + Session["username"] + model.RecipeViewModel.Name + "reseptiniz admin terefinden qiymetlendirirlecek";
-
-
-
-                smtpSend.Send(emailMessage);
-            }
-
+            Email.SendEmail(Session["email"].ToString(), Session["username"].ToString(), "reseptiniz admin terefinden qiymetlendirirlecek", model.RecipeViewModel.Name);
+          
             return RedirectToAction("RecipeGrid");
         }
         public ActionResult Edit(int id)
@@ -374,31 +347,9 @@ namespace RecipeApp.Controllers
                 _ingridientrepository.Create(ingridient, 0);
 
             }
-            int port = 587;
-            string smtpServer = "smtp.gmail.com";
-            string smtpUserName = "tricklyrecipeapp@gmail.com";
-            string smtpUserPass = "bilmirem@";
+            Email.SendEmail(Session["email"].ToString(), Session["username"].ToString(), "reseptiniz admin terefinden qiymetlendirirlecek", model.RecipeViewModel.Name);
 
-            using (SmtpClient smtpSend = new SmtpClient())
-            {
-                smtpSend.Host = smtpServer;
-                smtpSend.Port = port;
-
-                smtpSend.Credentials = new System.Net.NetworkCredential(smtpUserName, smtpUserPass);
-
-                smtpSend.EnableSsl = true;
-
-                MailMessage emailMessage = new System.Net.Mail.MailMessage();
-
-                emailMessage.To.Add(Session["email"].ToString());
-                emailMessage.From = new MailAddress("tricklyrecipeapp@gmail.com");
-                emailMessage.Subject = "Hormetli" + " " + Session["username"] + model.RecipeViewModel.Name + "reseptiniz admin terefinden qiymetlendirirlecek";
-                emailMessage.Body = "Hormetli" + " " + Session["username"] + model.RecipeViewModel.Name + "reseptiniz admin terefinden qiymetlendirirlecek";
-
-
-
-                smtpSend.Send(emailMessage);
-            }
+          
 
 
             return RedirectToAction("Profiles","Home");
@@ -421,9 +372,11 @@ namespace RecipeApp.Controllers
         {
             var data = _catrepository.GetAll();
             var category = _mapper.Map<List<CategoryViewModel>>(data);
-
+            
+          
             return View(category);
         }
+       
 
 
     }

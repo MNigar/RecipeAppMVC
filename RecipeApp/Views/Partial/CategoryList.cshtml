@@ -1,0 +1,15 @@
+﻿@model IEnumerable<RecipeApp.Models.CategoryViewModel>
+
+<p>
+
+</p>
+
+<div class="sidebar-widget">
+    <h5 class="widget-title"> Post Categories </h5>
+    <ul class="sidebar-widget-list">
+        @foreach (var i in Model)
+        {
+            <li> <a href="/Category/Recipegrid/@i.Id"> @i.Name </a> </li>
+        }
+        </ul>
+</div>

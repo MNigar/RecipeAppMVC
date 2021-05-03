@@ -60,6 +60,7 @@
     <Compile Include="DTOS\CategoryDTO.cs" />
     <Compile Include="DTOS\IngridientDTO.cs" />
     <Compile Include="DTOS\IngridinetListDTO.cs" />
+    <Compile Include="DTOS\LogoDTO.cs" />
     <Compile Include="DTOS\RecipeDTO.cs" />
     <Compile Include="DTOS\UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,6 +69,8 @@
     <Compile Include="Repository\Ingridient\IIngridientRepository.cs" />
     <Compile Include="Repository\Ingridient\IngridientRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\Logo\ILogoRepository.cs" />
+    <Compile Include="Repository\Logo\LogoRepository.cs" />
     <Compile Include="Repository\Recipe\IRecipeRepository.cs" />
     <Compile Include="Repository\Recipe\RecipeRepository.cs" />
     <Compile Include="Repository\RepositoryClass.cs" />
