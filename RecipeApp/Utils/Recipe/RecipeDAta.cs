@@ -12,7 +12,7 @@ namespace RecipeApp.Utils.Recipe
 {
     public class RecipeData: Controller
     {
-        public Tuple<List<string>,List<string>> IngArray(FormCollection form)
+        public static Tuple<List<string>,List<string>> IngArray(FormCollection form)
         {
             List<string> arrList = new List<string>();
             List<string> arrListQuantity = new List<string>();
@@ -41,27 +41,29 @@ namespace RecipeApp.Utils.Recipe
             }
             return Tuple.Create(arrList, arrListQuantity);
         }
-        public void Creates(FormCollection form, HttpPostedFileBase Photo)
+        public  RecipeViewModel Creates(FormCollection form, HttpPostedFileBase Photo)
         {
 
-            RecipeIngridientViewModel model = new RecipeIngridientViewModel();
+           RecipeViewModel model = new RecipeViewModel();
 
-            model.RecipeViewModel = new RecipeViewModel();
+
+          
+            model.Status = (int)Helpers.status.Waiting;
+            model.EditedId = 0;
+            model.Name = form["name"];
+
+            model.Description = form["Description"];
+            model.CategoryId = Convert.ToInt32(form["categoryId"]);
+            model.Duration = form["Duration"];
+           
+           
+            return model;
+           
+        }
+        public static List<IngridientViewModel> CreateIngridient(FormCollection form,int id)
+        {
             List<IngridientViewModel> newlist = new List<IngridientViewModel>();
-
-            string fName = Photo.FileName;
-            string path = Path.Combine(Server.MapPath("~/Upload"), fName);
-            Photo.SaveAs(path);
-            model.RecipeViewModel.Status = (int)Helpers.status.Waiting;
-            model.RecipeViewModel.UserId = (int)Session["userId"];
-            model.RecipeViewModel.EditedId = 0;
-            model.RecipeViewModel.Name =Request.Form["name"];
-            model.RecipeViewModel.Description = Request.Form["Description"];
-            model.RecipeViewModel.CategoryId = Convert.ToInt32(Request.Form["categoryId"]);
-            model.RecipeViewModel.Photo = fName;
-            model.RecipeViewModel.Duration = Request.Form["Duration"];
-            model.IngridientViewModel = new IngridientList();
-            model.IngridientViewModel.IngridientLists = new List<IngridientViewModel>();
+            
             var ingridinetlist = new List<string>();
             var result = IngArray(form);
             foreach (var i in result.Item1)
@@ -70,23 +72,12 @@ namespace RecipeApp.Utils.Recipe
                 {
                     Name = i,
                     Quantity = result.Item2[result.Item1.IndexOf(i)],
-                    RecipeId = model.RecipeViewModel.Id
-                });
+                    RecipeId = id
+                }) ;
             }
-
-
-            foreach (var ing in newlist)
-            {
-                model.IngridientViewModel.IngridientLists.Add(new IngridientViewModel()
-                {
-                    Name = ing.Name,
-                    Quantity = ing.Quantity,
-                    RecipeId = ing.RecipeId
-                });
-
-            }
-
-           
+            return newlist;
+          
+            
         }
     }
 }

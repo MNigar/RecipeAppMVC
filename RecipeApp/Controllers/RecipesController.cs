@@ -12,6 +12,7 @@ using AutoMapper;
 using RecipeApp.Helper;
 using RecipeApp.Models;
 using RecipeApp.Models.ViewModels;
+using RecipeApp.Utils.Recipe;
 using RecipeBLL.DTOS;
 using RecipeBLL.Repository.Category;
 using RecipeBLL.Repository.Ingridient;
@@ -140,77 +141,27 @@ namespace RecipeApp.Controllers
         [HttpPost]
         public ActionResult Creates(FormCollection form, HttpPostedFileBase Photo)
         {
-                        
-            var forms = new Dictionary<string, string>();
-            List<IngridientViewModel> newlist = new List<IngridientViewModel>();
-            List<string> arrList = new List<string>();
-            List<string> arrListQuantity = new List<string>();
-
-        
-            foreach (var key in form.AllKeys)
-            {
-                var value = form[key];
-                if (key == "IngridientName")
-                {
-                  string[]  arr = value.Split(',');
-                    foreach(var i in arr)
-                    {
-                        arrList.Add(i);
-                    }
-                    
-                }
-                if (key == "IngridientQuantity")
-                {
-                    string[] arr1 = value.Split(',');
-                    foreach (var i in arr1)
-                    {
-                        arrListQuantity.Add(i);
-                    }
-                }
-            }
-           
-                     
+                                     
             RecipeIngridientViewModel model = new RecipeIngridientViewModel();
 
-            model.RecipeViewModel = new RecipeViewModel();
-            
+            RecipeData method = new RecipeData();
+
+            var createdRecipe = method.Creates(form, Photo);
+            model.RecipeViewModel = createdRecipe;
+
             string fName = Photo.FileName;
             string path = Path.Combine(Server.MapPath("~/Upload"), fName);
             Photo.SaveAs(path);
-            model.RecipeViewModel.Status =(int) Helpers.status.Waiting;
-            model.RecipeViewModel.UserId = (int)Session["userId"];
-            model.RecipeViewModel.EditedId = 0;
-            model.RecipeViewModel.Name = Request.Form["name"];
-            model.RecipeViewModel.Description = Request.Form["Description"];
-            model.RecipeViewModel.CategoryId =Convert.ToInt32 (Request.Form["categoryId"]);
             model.RecipeViewModel.Photo = fName;
-            model.RecipeViewModel.Duration= Request.Form["Duration"];
+            model.RecipeViewModel.UserId = (int)Session["userId"];           
             var recipe = _mapper.Map<RecipeBLL.DTOS.RecipeDTO>(model.RecipeViewModel);
             _repository.Create(recipe, model.RecipeViewModel.UserId);
-            model.IngridientViewModel = new IngridientList();
-            model.IngridientViewModel.IngridientLists = new List<IngridientViewModel>();
-            var ingridinetlist = new List<string>();
-            foreach (var i in arrList)
-            {
-                newlist.Add(new IngridientViewModel()
-                {
-                    Name = i,
-                    Quantity = arrListQuantity[arrList.IndexOf(i)],
-                    RecipeId = model.RecipeViewModel.Id
-                });
-            }
-
+            var id = _recipeContext.Recipes.ToList().LastOrDefault();
+            var ingResult = RecipeData.CreateIngridient(form, id.Id);
            
-            foreach(var ing in newlist)
-            {
-                model.IngridientViewModel.IngridientLists.Add(new IngridientViewModel()
-                {   Name=ing.Name,
-                    Quantity=ing.Quantity,
-                    RecipeId=ing.RecipeId
-                });
-
-            }
-
+            model.IngridientViewModel = new IngridientList();
+            model.IngridientViewModel.IngridientLists = ingResult;
+          
             foreach(var i in model.IngridientViewModel.IngridientLists)
             {
                 var ingridient = _mapper.Map<IngridientDTO>(i);
