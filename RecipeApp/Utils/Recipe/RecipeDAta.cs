@@ -79,5 +79,22 @@ namespace RecipeApp.Utils.Recipe
           
             
         }
+        public  string RecipeDate(DateTime date1,DateTime date2)
+        {
+            var date = date1 - date2;
+            if (date.TotalMinutes < 60 && date.TotalHours < 1 && date.TotalDays < 1)
+            {
+                ViewData["Date"] = date.TotalMinutes + "minutes";
+            }
+            if (date.TotalMinutes > 60 && date.TotalHours > 0 && date.TotalDays < 1)
+            {
+                ViewData["Date"] = date.TotalHours + "hours";
+            }
+            if (date.TotalDays > 1)
+            {
+                ViewData["Date"] = date.TotalDays.ToString().Split('.')[0] + "days";
+            }
+            return ViewBag.Date;
+        }
     }
 }

@@ -31,10 +31,9 @@ D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.Migrations.added
 D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.Migrations.addedfield.resources
 D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.Migrations.updatedcolumns.resources
 D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.Migrations.updatedcolumnss.resources
+D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.Migrations.Addedlogotable.resources
 D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.csproj.GenerateResource.cache
 D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.csproj.CoreCompileInputs.cache
 D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.csproj.CopyComplete
 D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.dll
 D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.pdb
-D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.csprojAssemblyReference.cache
-D:\COVID1904\MVCProject\RecipeApp\RecipeDAL\obj\Debug\RecipeDAL.Migrations.Addedlogotable.resources

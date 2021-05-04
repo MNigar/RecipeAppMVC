@@ -45,7 +45,12 @@ namespace RecipeApp.Areas.Manage.Controllers
             return View(result);
         }
 
-
+        public ActionResult AllRecipe()
+        {
+            var data = _repository.GetAll();
+            var result = _mapper.Map<List<RecipeViewModel>>(data);
+            return View(result);
+        }
 
 
 

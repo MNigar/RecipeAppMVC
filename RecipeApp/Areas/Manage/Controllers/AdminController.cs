@@ -13,9 +13,9 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 
-namespace RecipeApp.Controllers
+namespace RecipeApp.Areas.Manage.Controllers
 {
-  
+
     public class AdminController : Controller
     {
         private readonly IMapper _mapper;
@@ -32,11 +32,7 @@ namespace RecipeApp.Controllers
             _userRepository = userRepository;
 
         }
-        // GET: Admin
-        public ActionResult Index()
-        {
-            return View();
-        }
+   
         public ActionResult Login()
         {
             return View();

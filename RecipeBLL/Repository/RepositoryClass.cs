@@ -27,6 +27,8 @@ namespace RecipeBLL.Repository
         //RecipeContext _dbContext = new RecipeContext();
         public void Create(TDto entity,int userId=0)
         {
+            var transaction = _dbContext.Database.BeginTransaction();
+
             try
             {
 
@@ -39,18 +41,17 @@ namespace RecipeBLL.Repository
                 model.ModifiedUserId = (HttpContext.Current.Session["userId"] == null)?userId: (int)HttpContext.Current.Session["userId"];
                 model.CreatedDate = DateTime.Now;
                 model.ModifiedDate = DateTime.Now;
-                using (var transaction = _dbContext.Database.BeginTransaction())
-                {
-                    _dbContext.Set<TDao>().Add(model);
-                    _dbContext.SaveChanges();
-                    transaction.Commit();
-                }
-                   
+              
+                _dbContext.Set<TDao>().Add(model);
+                _dbContext.SaveChanges();
+                transaction.Commit();
+                              
             }
             catch (Exception ex)
             {
-                
+                transaction.Rollback();
             }
+            
         }
 
         public void Delete(int id,int userId=0)

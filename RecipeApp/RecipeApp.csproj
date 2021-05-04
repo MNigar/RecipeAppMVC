@@ -137,7 +137,7 @@
     <Compile Include="Areas\Manage\Controllers\LogoController.cs" />
     <Compile Include="Areas\Manage\Controllers\RecipesController.cs" />
     <Compile Include="Areas\Manage\ManageAreaRegistration.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Areas\Manage\Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
@@ -2098,6 +2098,7 @@
     <Content Include="Areas\Manage\Views\Logo\Edit.cshtml" />
     <Content Include="Areas\Manage\Views\Logo\Details.cshtml" />
     <Content Include="Areas\Manage\Views\Logo\Index.cshtml" />
+    <Content Include="Areas\Manage\Views\Recipes\AllRecipe.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Public\backblue.gif" />
     <Content Include="Public\cookies.txt" />
@@ -2281,9 +2282,7 @@
     <Content Include="Views\Category\RecipeCategory.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Registration.cshtml" />
-    <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Views\Admin\Add.cshtml" />
-    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Areas\Manage\Views\Admin\Login.cshtml" />
     <Content Include="Views\Home\RecipeGrid.cshtml" />
     <Content Include="Views\Home\RecipeDetails.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

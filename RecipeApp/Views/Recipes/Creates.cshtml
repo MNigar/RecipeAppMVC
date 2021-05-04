@@ -29,11 +29,11 @@
             <div class="row">
                 <div class="col-lg-8">
                     <form method="post" action="@Url.Action("Creates", "Recipes")" enctype="multipart/form-data">
-
+                        <input type="hidden" name="Id" value="@Model.RecipeViewModel.Id" />
                         <div class="metro_recipe-submit-section">
                             <div class="form-group">
                                 <label>Recipe Name</label>
-                                <input type="text" class="form-control" name="name" placeholder="Recipe Name" required >
+                                <input type="text" class="form-control" name="name" placeholder="Recipe Name" required>
                                 @Html.ValidationMessageFor(model => model.RecipeViewModel.Name, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group">

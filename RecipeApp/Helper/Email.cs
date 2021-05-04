@@ -27,8 +27,8 @@ namespace RecipeApp.Helper
 
                 emailMessage.To.Add(userEmail);
                 emailMessage.From = new MailAddress("tricklyrecipeapp@gmail.com");
-                emailMessage.Subject = "Hormetli" + " " + username + recipeName + Text;
-                emailMessage.Body = "Hormetli" + " " + username + recipeName + Text;
+                emailMessage.Subject = ($"Hormetli {username}  {recipeName}  {Text}");
+                emailMessage.Body = ($"Hormetli {username}  {recipeName}  {Text}");
 
 
 
