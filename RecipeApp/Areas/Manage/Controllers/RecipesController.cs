@@ -55,12 +55,6 @@ namespace RecipeApp.Areas.Manage.Controllers
 
 
 
-        //[HttpGet]
-        //public ActionResult Submit(int id)
-        //{
-        //    return ()
-        //}
-
         public ActionResult Details(int id)
         {
             var data=_repository.GetById(id);
@@ -69,18 +63,7 @@ namespace RecipeApp.Areas.Manage.Controllers
             ViewBag.image = result.Photo;
             return View(result);
         }
-        //[HttpGet]
-        //public ActionResult Submit(int id)
-        //{
-           
-        //    var data = _repository.GetById(id);
-        //    if (data == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(data);
-        //}
-
+     
 
     
         public ActionResult Submit(int id)
@@ -98,17 +81,17 @@ namespace RecipeApp.Areas.Manage.Controllers
                 _repository.Update(deleteddata, 2);
             }
             Email.SendEmail(Session["email"].ToString(), Session["username"].ToString(), "reseptiniz qəbul edildi", result.Name);
-            return RedirectToAction("WaitingForSubmit");
+            return RedirectToAction("AllRecipe");
         }
      
-        public ActionResult Cancel(int id)
+        public ActionResult Cancel(int id,string note)
         {
             var data = _repository.GetById(id);
             
             data.Status = (int)Helper.Helpers.status.Deactive;
             _repository.Update(data, 2);
             Email.SendEmail(Session["email"].ToString(), Session["username"].ToString(), "reseptiniz qəbul edilmədi", data.Name);
-            return RedirectToAction("WaitingForSubmit");
+            return RedirectToAction("AllRecipe");
         }
         public ActionResult TopUser()
         {
@@ -116,6 +99,7 @@ namespace RecipeApp.Areas.Manage.Controllers
             var data = _mapper.Map<List<UserViewModel>>(result);
             return View(data);
         }
-        
+      
+
     }
 }

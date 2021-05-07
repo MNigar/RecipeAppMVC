@@ -21,6 +21,9 @@ namespace RecipeApp.Models
         public string Password { get; set; }
 
         public int Status { get; set; }
+        public virtual List<Recipe> Recipes { get; set; }
+        public virtual List<Category> Categories { get; set; }
+
 
     }
 }

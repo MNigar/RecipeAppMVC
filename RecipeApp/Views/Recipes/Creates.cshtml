@@ -85,14 +85,22 @@
 
 
                         <div class="metro_recipe-submit-section p-0 border-0">
-                            <div class="form-group">
-                                <label>Upload Recipe Photos</label>
-                                <div class="metro_input-upload">
-                                    <button type="button" class="metro_btn-custom secondary" name="button" required>Upload Photos</button>
-                                    <input type="file" name="Photo">
-                                </div>
-                            </div>
-                        </div>
+            <div class="form-group">
+                <label>Upload Recipe Photos</label>
+              
+                <div>
+                    <input type="file" name="Photo" class="Photo">
+
+                    @*<input type="file" id="Photo" name="Photo"><br><br>*@
+                </div>
+
+               
+            </div>
+
+
+        </div>
+                  
+
 
                         <div class="text-right">
                             <button type="submit" class="mt-4 metro_btn-custom" name="button">Submit Recipe</button>
@@ -251,7 +259,7 @@
                        div1.setAttribute("id", "ingname");
                     var div2 = document.createElement("div");
                     div2.setAttribute("id", "ingquantity");
-
+                     
                     div2.setAttribute("class", "form-group col-md-6");
 
                        var name = document.createElement("INPUT");
@@ -260,22 +268,30 @@
                     name.setAttribute("Name", "IngridientName");
                     name.innerHTML = "Name";
                     name.setAttribute("class", "form-control");
-                     name.setAttribute("placeholder", "Name");
-       
-                    var quantity = document.createElement("INPUT");
+                    name.setAttribute("placeholder", "Name");
+                    name.setAttribute("required", "");
+
+        var file = document.createElement("INPUT");
                     quantity.setAttribute("type", "text");
                     quantity.setAttribute("id", "file1");
                     quantity.innerHTML = "Quantity";
                     quantity.setAttribute("class", "form-control");
                     quantity.setAttribute("Name", "IngridientQuantity");
                     quantity.setAttribute("placeholder", "Count/Amount etc.")
-                    var button = document.getElementById("ingridient");
+                    quantity.setAttribute("required", "");
+
+        var button = document.getElementById("ingridient");
+
+      
+
+
+
                     div1.appendChild(name);
                     div2.appendChild(quantity)
                     button.appendChild(div1);
                     button.appendChild(div2);
 
+
             }
-
-
+ 
 </script>

@@ -36,46 +36,19 @@
 
             <!-- Sidebar CTA Start -->
             <div class="sidebar-widget sidebar-cta">
-                <img src="~/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/sidebar-cta.jpg" alt="Call To Action">
+                @*<img src="~/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/sidebar-cta.jpg" alt="Call To Action">*@
+                @Html.Action("Logo", "Partial")
                 <div class="sidebar-cta-content">
                     <span>Good Food</span>
                     <h6>Best Quality Food</h6>
                     <a href="shop.html" class="metro_btn-custom">Shop Now</a>
                 </div>
             </div>
+            
+
             <!-- Sidebar CTA End -->
             <!-- Recent Recipes Start -->
-            <div class="sidebar-widget widget-recent-posts">
-                <h5 class="widget-title">Recent Recipes</h5>
-                <article class="post">
-                    <a href="blog-details.html"><img src="~/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/blog/sm/1.jpg" alt="post"></a>
-                    <div class="post-content">
-                        <a href="#"> Burgers </a>
-                        <h6> <a href="blog-details.html">Tomato Stuffing with Cumin and Radish</a> </h6>
-                    </div>
-                </article>
-                <article class="post">
-                    <a href="blog-details.html"><img src="~/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/blog/2.jpg" alt="post"></a>
-                    <div class="post-content">
-                        <a href="#"> Pizza </a>
-                        <h6> <a href="blog-details.html">Over Baked Pizza With Four Cheese</a> </h6>
-                    </div>
-                </article>
-                <article class="post">
-                    <a href="blog-details.html"><img src="~/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/blog/sm/3.jpg" alt="post"></a>
-                    <div class="post-content">
-                        <a href="#"> Fast Food </a>
-                        <h6> <a href="blog-details.html">Grilled Burgers With Tomato Paste</a> </h6>
-                    </div>
-                </article>
-                <article class="post">
-                    <a href="blog-details.html"><img src="~/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/blog/sm/4.jpg" alt="post"></a>
-                    <div class="post-content">
-                        <a href="#"> Fast Food </a>
-                        <h6> <a href="blog-details.html">American Style French Fries Air Fried</a> </h6>
-                    </div>
-                </article>
-            </div>
+          
             <!-- Recent Recipes End -->
             <!-- Popular Tags Start -->
             <div class="sidebar-widget">
@@ -93,7 +66,7 @@
                     <a href="#">Live Stock</a>
                     <a href="#">Harvest</a>
                 </div>
-                    
+
             </div>
             <!-- Popular Tags End -->
 
@@ -167,7 +140,6 @@
                     </ul>
 
                     <!-- Logo -->
-                    <a class="navbar-brand" href="index.html"> <img src="~/Upload/@ViewData["Logo"]" alt="logo"> </a>
 
                     <!-- Call to Action -->
                     <div class="metro_header-controls">
@@ -245,24 +217,7 @@
                                                     </div>
                                                 </div>
                                             }*@
-                                            <div class="col-lg-4">
-                                                <div class="mega-menu-item">
-                                                    <a href="recipe-grid.html" class="metro_recipe-category">
-                                                        <div class="metro_recipe-category-thumb">
-                                                            <img src="~/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/categories/3.jpg" alt="Recipe Category">
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="mega-menu-item">
-                                                    <a href="recipe-grid.html" class="metro_recipe-category">
-                                                        <div class="metro_recipe-category-thumb">
-                                                            <img src="~/Public/metropolitanhost.com/themes/themeforest/html/trickly/assets/img/blog/2.jpg" alt="Recipe Category">
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                          
                                         </div>
                                     </div>
 
@@ -304,7 +259,6 @@
         <div class="container">
             <div class="metro_footer-top">
                 <div class="metro_footer-logo">
-                    <a class="navbar-brand" href="index.html"> <img src="~/Upload/@ViewData["Logo"]" alt="logo"> </a>
                 </div>
             </div>
         </div>

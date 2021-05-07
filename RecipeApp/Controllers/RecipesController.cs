@@ -246,9 +246,11 @@ namespace RecipeApp.Controllers
 
         public ActionResult Home()
         {
+           
             var data = _catrepository.GetAll();
             var category = _mapper.Map<List<CategoryViewModel>>(data);
-                      
+            ViewBag.Recipe = _repository.GetAll().Where(x=>x.Status==(int)Helpers.status.Active);
+
             return View(category);
         }
        

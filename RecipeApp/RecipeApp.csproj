@@ -2283,8 +2283,6 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Registration.cshtml" />
     <Content Include="Areas\Manage\Views\Admin\Login.cshtml" />
-    <Content Include="Views\Home\RecipeGrid.cshtml" />
-    <Content Include="Views\Home\RecipeDetails.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Recipes\Search.cshtml" />
     <Content Include="Views\Home\Profiles.cshtml" />

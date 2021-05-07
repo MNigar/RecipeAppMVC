@@ -42,26 +42,15 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-           
             <!-- Nav Item - Pages Collapse Menu -->
-            
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-           
             <!-- Nav Item - Pages Collapse Menu -->
             @*<li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -91,6 +80,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("AllRecipe","Recipes",new { Area = "Manage" })">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>AllRecipe</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="@Url.Action("WaitingForSubmit","Recipes",new { Area = "Manage" })">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>WaitingForSubmit</span>
@@ -98,6 +93,12 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="@Url.Action("TopUser","Recipes",new { Area = "Manage" })">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>TopUser</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index","Home",new { Area = "Manage" })">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>TopUser</span>
                 </a>
@@ -119,17 +120,8 @@
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
 
-            <!-- Sidebar Message -->
-            <div class="sidebar-card">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div>
+
 
         </ul>
         <!-- End of Sidebar -->

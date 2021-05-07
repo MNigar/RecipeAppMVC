@@ -54,8 +54,9 @@ namespace RecipeApp.Areas.Manage.Controllers
 
                         if (Session["username"].ToString() == "admin")
                         {
-                            return View("~/Areas/Manage/Views/Home/Index.cshtml");
-                        }
+                            //return View("~/Areas/Manage/Views/Home/Index.cshtml");
+                            return RedirectToAction("Index", "Home");
+                    }
                         else
                         {
                             return RedirectToAction("Login", "Admin");
